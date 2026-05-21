@@ -14,7 +14,8 @@
 
 ## 成長するフォルダ
 
-- [ideas/](ideas/) - アイデア、仮説、壁打ちの記録
+- [ideas/](ideas/) - 何を作るかのアイデア壁打ち。1 アイデア = 1 ファイル
+- [app-design/](app-design/) - 作ると決めた 1 つのアイデアの具体化
 - [requirements/](requirements/) - PRD / 要件定義
 - [specs/](specs/) - 機能別仕様
 - [decisions/](decisions/) - ADR。1 決定 = 1 ファイル
@@ -36,7 +37,8 @@
 - 1 ファイルが 300 行を超えそうなら分割を検討する。
 - `_index.md` は配下のファイルを一覧化する。
 - 命名:
-  - idea: `YYYYMMDD-<slug>.md`
+  - idea: `<idea-slug>.md`
+  - research: `<topic-slug>.md`
   - requirement / ADR / issue: `NNNN-<slug>.md`
   - spec: `docs/specs/<feature-slug>/spec.md`
   - progress: `YYYY-Www.md`
