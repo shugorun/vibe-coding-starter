@@ -1,0 +1,4 @@
+interface:
+  display_name: "Catchup Project"
+  short_description: "Restore project context at the start of a session"
+  default_prompt: "Catch up on this project and summarize the current state."
