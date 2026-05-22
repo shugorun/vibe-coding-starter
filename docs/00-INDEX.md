@@ -1,8 +1,10 @@
 # Documentation Index
 
-このプロジェクトの入口。新セッションの `catchup-project` はここから読む。
+このプロジェクトの入口。新セッションの `catchup-project` はここから読む。常時ロードの運用契約は ルート の `CLAUDE.md` / `AGENTS.md` にある。
 
 ## 必読順
+
+番号はファイル ID であって読む順ではない。下記の順で読む。
 
 1. [05-PROGRESS.md](05-PROGRESS.md) - 現在地、次にやること、レビュー待ち
 2. [02-GUIDELINES.md](02-GUIDELINES.md) - セッション運用、記録ルール、レビューゲート
@@ -15,7 +17,7 @@
 ## 成長するフォルダ
 
 - [ideas/](ideas/) - 何を作るかのアイデア壁打ち。1 アイデア = 1 ファイル
-- [app-design/](app-design/) - 作ると決めた 1 つのアイデアの具体化
+- [app-design/](app-design/) - 作ると決めた 1 つのアイデアの具体化（考え中の作業場。固まったら `01-PRODUCT` / `04-ARCHITECTURE` に反映）
 - [requirements/](requirements/) - PRD / 要件定義
 - [specs/](specs/) - 機能別仕様
 - [decisions/](decisions/) - ADR。1 決定 = 1 ファイル
@@ -36,6 +38,7 @@
 
 - 1 ファイルが 300 行を超えそうなら分割を検討する。
 - `_index.md` は配下のファイルを一覧化する。
+- 日時は推測せず `Get-Date` で取得した値を使う。時刻が不要な箇所は日付のみでよい。
 - 命名:
   - idea: `<idea-slug>.md`
   - research: `<topic-slug>.md`
