@@ -5,7 +5,7 @@ PRD / 要件定義の一覧。
 ## ステータス
 
 - `📝 draft` - 草案
-- `🔍 reviewed` - ユーザ承認済
+- `🔍 reviewed` - 含む一方通行決定をユーザ確認済
 - `active` - 実装対象
 - `✅ done` - 初版完了
 - `superseded` - 後続に置き換え

@@ -6,7 +6,7 @@
 
 - `📋 todo` - 未着手
 - `📝 draft` - 草案
-- `🔍 reviewed` - ユーザ承認済
+- `🔍 reviewed` - 含む一方通行決定をユーザ確認済
 - `🚧 implementing` - 実装中
 - `✅ done` - 初版完了
 - `superseded` - 後続に置き換え

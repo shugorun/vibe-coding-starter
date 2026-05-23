@@ -5,8 +5,8 @@
 ## リリースチェックリスト
 
 - [ ] プロダクト名と説明が確定している
-- [ ] MVP requirement が `reviewed`
-- [ ] 主要 spec が `reviewed`
+- [ ] MVP requirement の一方通行決定が `🔍 reviewed`
+- [ ] 主要 spec の一方通行決定が `🔍 reviewed`
 - [ ] 主要フローの検証が完了している
 - [ ] 既知の重大 issue がない
 - [ ] 環境変数と secret の扱いが整理されている
@@ -18,7 +18,7 @@
 
 | 配布先 | status | メモ |
 |---|---|---|
-| 未設定 | todo | |
+| 未設定 | 📋 todo | |
 
 ## 運用メモ
 

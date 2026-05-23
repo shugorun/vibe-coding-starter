@@ -48,8 +48,9 @@ ADR にすべき決定の起票が後回しになるなら、`docs/decisions/_in
 
 ## 技術スタックは表に従う
 
-- `docs/04-ARCHITECTURE.md` のスタック表が唯一の正。実装はこの表に従う。
-- 表に無いライブラリ・フレームワーク・サービスを採用/追加するときは、先に ADR（`docs/decisions/`）を起票し、ユーザ承認（`🔍 reviewed`）後にスタック表を更新する。思いつきで依存を足さない。
+- `docs/04-ARCHITECTURE.md` のスタック表が唯一の正。**段階で運用が変わる**:
+  - 探索 / MVP 期（行が `📝 draft`）: 選定は `docs/app-design/technical.md` + progress「決めたこと」一行で身軽に進める。ADR は不可逆・横断的な選定だけ（MVP を ADR で止めない）。
+  - pin 後（行が `🔍 reviewed`）: 実装はこの行に従う。pin 済みから逸脱・追加するときは先に ADR（`docs/decisions/`）を起票し、ユーザ確認後に表を更新する（思いつきで外れない）。
 - 検討途中の候補は `docs/app-design/technical.md` に置き、決定だけ表へ反映する（二重管理しない）。
 
 ## 透明性
@@ -63,7 +64,7 @@ ADR にすべき決定の起票が後回しになるなら、`docs/decisions/_in
 - 開始: 文脈を戻したいときは `/catchup-project`。
 - 通常作業: チャット指示を読み、`docs/02-GUIDELINES.md` に従う。
 - 終了: `/wrapup-project`（commit + push まで完了させる）。
-- `🔍 reviewed` status はユーザの明示承認があるものにだけ付ける。
+- **レビューは一方通行（不可逆／高コスト）な決定だけユーザ確認する。** 引き返せる決定は Claude が進めて progress に根拠を残す。spec を丸ごとレビューに乗せない。`🔍 reviewed` = 「含む一方通行決定をユーザ確認済」。詳細は `docs/02-GUIDELINES.md`「レビューゲート（一方通行決定のみ）」。
 
 ## 入口
 
