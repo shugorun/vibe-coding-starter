@@ -4,10 +4,10 @@ PRD / 要件定義の一覧。
 
 ## ステータス
 
-- `draft` - 草案
-- `reviewed` - ユーザ承認済
+- `📝 draft` - 草案
+- `🔍 reviewed` - ユーザ承認済
 - `active` - 実装対象
-- `done` - 初版完了
+- `✅ done` - 初版完了
 - `superseded` - 後続に置き換え
 
 ## 一覧

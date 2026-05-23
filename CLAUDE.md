@@ -31,16 +31,39 @@
 
 ## 書くタイミング（cadence）
 
-- 作業の流れの途中で自動的に書き込まない。**話題の区切り・タスク切替・`/wrapup-project` でまとめて**書く。
-- 記録すべきか迷ったら、doc を組み替えずに `docs/progress/` に1行メモを残す。
-- 大きな記録が必要なときは、勝手に書かず「ここまでを記録しておく？」と1行で提案する。
+- **progress（追記ログ）は作業単位の区切りごとに刻む（checkpoint）。** 検証が通った / 1フェーズ・1機能スライス完了 / 非自明な判断 / ブロッカー発見 の境界で、ユーザに聞かず自動で実行する: progress に1エントリ追記 → 検証 → 緑なら commit（**push はしない**）。手順は `/checkpoint`。push はセッション末の `/wrapup-project` でまとめる。
+- **1 checkpoint = 1 作業単位 = 1 commit = 1 progress エントリ。** 複数単位を1エントリに詰めない（粗くなる）。チャット毎にも書かない（細かすぎる）。コードを commit するなら、その作業単位の progress エントリを同じ commit に含める（記録なしで commit しない）。
+- **curated doc は流れの途中で書かない。** マイルストン級の変化のとき、または `/wrapup-project` で反映する。
+- **セッション終了時は `/wrapup-project` が docs 更新 → commit + push まで行う。** 未コミット/未push のまま終えない（次回 `/catchup-project` がループする原因になる）。
+- 迷ったら curated doc を組み替えず `docs/progress/` に1行メモを残す。
+
+## 意思決定の記録（2層）
+
+技術選定や方針判断は2層で残す。**全部を ADR にしない**（MVP が止まり、結局書かれず透明性が消える）。
+
+- **Tier 1 = progress の「決めたこと」一行（高速・常時）。** MVP 中の選定はここに即記録する。これがリアルタイムの透明性。
+- **Tier 2 = ADR（`docs/decisions/`）。** 対象は「不可逆 / 横断的 / スタック表を pin する」決定だけ。数は少ない。
+
+ADR にすべき決定の起票が後回しになるなら、`docs/decisions/_index.md` の「ADR候補」か progress の「次やること」にマークし、`docs/03-ROADMAP.md` の M3「技術方針」でまとめて起票する（書き忘れ＝透明性の喪失を防ぐ）。
+
+## 技術スタックは表に従う
+
+- `docs/04-ARCHITECTURE.md` のスタック表が唯一の正。実装はこの表に従う。
+- 表に無いライブラリ・フレームワーク・サービスを採用/追加するときは、先に ADR（`docs/decisions/`）を起票し、ユーザ承認（`🔍 reviewed`）後にスタック表を更新する。思いつきで依存を足さない。
+- 検討途中の候補は `docs/app-design/technical.md` に置き、決定だけ表へ反映する（二重管理しない）。
+
+## 透明性
+
+- 非自明なコマンド（git 操作、ビルド、削除、外部呼び出し等）は実行前に1行で何をするか宣言する。
+- バックグラウンドで何かを起動したら、何が動いているか・どう確認/停止するかを明示する。
+- skill（catchup / checkpoint / wrapup）が走らせる git/PowerShell コマンドは隠さず見える形にする。
 
 ## セッション運用
 
 - 開始: 文脈を戻したいときは `/catchup-project`。
 - 通常作業: チャット指示を読み、`docs/02-GUIDELINES.md` に従う。
-- 終了: `/wrapup-project`。
-- `reviewed` status はユーザの明示承認があるものにだけ付ける。
+- 終了: `/wrapup-project`（commit + push まで完了させる）。
+- `🔍 reviewed` status はユーザの明示承認があるものにだけ付ける。
 
 ## 入口
 

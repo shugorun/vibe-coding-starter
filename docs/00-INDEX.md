@@ -1,6 +1,6 @@
 # Documentation Index
 
-このプロジェクトの入口。新セッションの `catchup-project` はここから読む。常時ロードの運用契約は ルート の `CLAUDE.md` / `AGENTS.md` にある。
+このプロジェクトの入口。新セッションの `catchup-project` はここから読む。常時ロードの運用契約は ルート の `CLAUDE.md` にある。
 
 ## 必読順
 
@@ -30,7 +30,8 @@
 明示的に使うプロジェクト内スキル。
 
 - `/catchup-project` - セッション開始時の現在地復元
-- `/wrapup-project` - セッション終了時の記録更新
+- `/checkpoint` - 作業単位の区切りで progress 追記 + 緑なら commit（push はせず wrapup 集約。境界では自動実行）
+- `/wrapup-project` - セッション終了時の記録更新 + commit + push（クリーンに締める）
 
 アイデア、要件、仕様、実装、検証の通常作業は専用スキルにしない。ユーザのチャット指示をそのまま読み、[02-GUIDELINES.md](02-GUIDELINES.md) の運用ルールに従って進める。
 

@@ -9,7 +9,7 @@
 | M0 | ボイラープレート初期化 | docs / skills / hooks が配置済み | done |
 | M1 | アイデア選定 | 最初に作るアプリの仮説が `01-PRODUCT.md` と `ideas/` に記録済み | todo |
 | M2 | 要件定義 | MVP requirement が `reviewed` | todo |
-| M3 | 技術方針 | 主要 ADR と `04-ARCHITECTURE.md` が更新済み | todo |
+| M3 | 技術方針 | 主要 ADR（`decisions/_index.md` の「ADR候補」からの昇格含む）と `04-ARCHITECTURE.md` のスタック表が pin（`🔍 reviewed`）済み | todo |
 | M4 | 機能仕様 | MVP の主要 spec が `reviewed` | todo |
 | M5 | 初版実装 | 主要フローが動き、検証結果が記録済み | todo |
 | M6 | リリース準備 | `07-RELEASE.md` のチェックが完了 | todo |
@@ -32,3 +32,4 @@
 - 新しい要件や spec が増えたらバックログに反映する。
 - マイルストン完了時は `05-PROGRESS.md` と progress に記録する。
 - 優先順位の判断が非自明なら ADR に残す。
+- M3「技術方針」は、探索 / MVP 期に progress「決めたこと」と `decisions/_index.md` の「ADR候補」に溜めた判断を、まとめて正式 ADR に昇格させスタック表を pin する集約ゲート。MVP→修正に流れても ADR の書き忘れ（透明性の喪失）をここで防ぐ。

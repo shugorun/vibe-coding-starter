@@ -1,4 +1,0 @@
-interface:
-  display_name: "Wrapup Project"
-  short_description: "Record session progress and prepare the next session"
-  default_prompt: "Wrap up this project session and update the living docs."

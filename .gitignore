@@ -22,6 +22,9 @@ Thumbs.db
 .idea/
 .vscode/
 
+# Claude Code machine-local settings (permissions policy lives in settings.json)
+.claude/settings.local.json
+
 # Logs
 *.log
 npm-debug.log*

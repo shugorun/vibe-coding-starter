@@ -4,11 +4,11 @@
 
 ## ステータス
 
-- `todo` - 未着手
-- `draft` - 草案
-- `reviewed` - ユーザ承認済
-- `implementing` - 実装中
-- `done` - 初版完了
+- `📋 todo` - 未着手
+- `📝 draft` - 草案
+- `🔍 reviewed` - ユーザ承認済
+- `🚧 implementing` - 実装中
+- `✅ done` - 初版完了
 - `superseded` - 後続に置き換え
 
 ## 一覧

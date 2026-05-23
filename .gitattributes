@@ -1,4 +1,4 @@
 # All text files use LF (repo + working tree), regardless of each user's
-# core.autocrlf. Required for *.sh shebangs; also keeps the repo consistent
-# across Windows / macOS / Linux. Binary files are auto-detected and untouched.
+# core.autocrlf. Keeps the repo consistent and avoids CRLF noise in diffs.
+# Binary files are auto-detected and untouched.
 * text=auto eol=lf
