@@ -57,7 +57,7 @@ ADR にすべき決定の起票が後回しになるなら、`docs/decisions/_in
 
 - 非自明なコマンド（git 操作、ビルド、削除、外部呼び出し等）は実行前に1行で何をするか宣言する。
 - バックグラウンドで何かを起動したら、何が動いているか・どう確認/停止するかを明示する。
-- skill（catchup / checkpoint / wrapup）が走らせる git/PowerShell コマンドは隠さず見える形にする。
+- skill（catchup / checkpoint / wrapup）が走らせる git / シェルコマンドは隠さず見える形にする。
 
 ## セッション運用
 

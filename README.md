@@ -1,6 +1,20 @@
 # App Development Boilerplate
 
-アイデアの壁打ち、要件定義、仕様化、実装、検証、振り返りを 1 つのプロジェクト内で進めるためのボイラープレート。**Windows / PowerShell + Claude Code 前提。**
+アイデアの壁打ち、要件定義、仕様化、実装、検証、振り返りを 1 つのプロジェクト内で進めるためのボイラープレート。**Claude Code 前提（Windows / macOS / Linux 対応）。** フックは Node スクリプトなので OS を問わず動く。
+
+## このテンプレから始める
+
+1. このリポジトリをテンプレートとして新規プロジェクトを作る。
+   - GitHub なら **"Use this template"**。手元から始めるなら:
+     ```text
+     git clone <this-repo> my-app && cd my-app
+     rm -rf .git && git init        # Windows PowerShell: Remove-Item -Recurse -Force .git; git init
+     ```
+2. Claude Code でプロジェクトを開く。`.claude/` のフックは**信頼確認のプロンプトを承認するまで動かない**（clone 直後はこれが既定動作）。承認すると `SessionStart` の案内が出る。
+3. `/catchup-project` を実行 → 作りたいアプリを自然文で送って壁打ち開始。
+4. `LICENSE` の著作権者を自分の名前に書き換える（既定は MIT）。
+
+> 既定の権限モードは `acceptEdits`（[.claude/settings.json](.claude/settings.json)）。フォルダ内の編集は自動承認、外は読みのみ、secret と外部書込は拒否。挙動を変えたい場合はこのファイルを編集する。
 
 ## 使い方
 
@@ -30,7 +44,7 @@ MVP 要件に落として
 
 - `CLAUDE.md` - 常時ロードの運用契約（単一の正）。
 - `.claude/skills/` - Claude Code 用のプロジェクト内スキル（`catchup-project` / `checkpoint` / `wrapup-project`）。
-- `.claude/hooks/` - セッション開始・終了フック（PowerShell `.ps1`）。
+- `.claude/hooks/` - セッション開始・終了フック（クロスプラットフォームな Node `.cjs`）。
 - `.claude/settings.json` - フック登録と許可ポリシー（フォルダ内編集は自動承認・外は読みのみ・秘密情報と外部書込は拒否）。
 - `docs/` - 進化する設計・要件・進捗・意思決定ログ。
 
@@ -50,8 +64,10 @@ ideas/        何を作るか（壁打ち）
 
 ## 環境
 
-- Windows + PowerShell + Claude Code を前提とする。フックは `.claude/hooks/*.ps1`、`.claude/settings.json` から `powershell -NoProfile -ExecutionPolicy Bypass -File ...` で呼ばれる。
-- 週番号など日付は手計算せず PowerShell の `Get-Date` から取得する。
+- Claude Code を前提とする。Windows / macOS / Linux で動く。
+- フックは `.claude/hooks/*.cjs`（Node）。`.claude/settings.json` から `node .claude/hooks/...` で呼ばれる。Node は Claude Code 自体が要求するので追加インストールは不要。
+- 週番号など日付は手計算せず OS のコマンドで取得する（Unix系: `date +%G-W%V`、Windows PowerShell: `Get-Date`）。詳細は各スキル参照。
+- `.gitattributes` で全テキストを LF に統一しているため、`.cjs` フックは OS を問わず動く。
 
 ## 運用原則
 

@@ -29,25 +29,33 @@
       "PowerShell(git add:*)",
       "PowerShell(git commit:*)",
       "PowerShell(git push:*)",
+      "Bash(date:*)",
       "PowerShell(Get-Date:*)",
-      "PowerShell(Get-ChildItem:*)",
-      "PowerShell(\"{0}-W{1:D2}\" -f \\(Get-Date\\).Year, [int]\\(Get-Date -UFormat %V\\))"
+      "PowerShell(Get-ChildItem:*)"
     ],
     "deny": [
       "Read(./.env)",
-      "Read(./.env.*)",
+      "Read(./.env.local)",
+      "Read(./.env.*.local)",
       "Read(./**/.env)",
-      "Read(./**/.env.*)",
+      "Read(./**/.env.local)",
+      "Read(./**/.env.*.local)",
       "Read(./**/secrets/**)",
       "Read(./**/credentials*)",
       "Edit(./.env)",
-      "Edit(./.env.*)",
+      "Edit(./.env.local)",
+      "Edit(./.env.*.local)",
       "Edit(./**/.env)",
+      "Edit(./**/.env.local)",
+      "Edit(./**/.env.*.local)",
       "Edit(./**/secrets/**)",
+      "Edit(./**/credentials*)",
       "Write(./.env)",
-      "Write(./.env.*)",
+      "Write(./.env.local)",
+      "Write(./.env.*.local)",
       "Write(./**/.env)",
-      "Write(./**/.env.*)",
+      "Write(./**/.env.local)",
+      "Write(./**/.env.*.local)",
       "Write(./**/secrets/**)",
       "Write(./**/credentials*)"
     ]
@@ -58,7 +66,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/session-start.ps1"
+            "command": "node .claude/hooks/session-start.cjs"
           }
         ]
       }
@@ -68,7 +76,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/stop.ps1"
+            "command": "node .claude/hooks/stop.cjs"
           }
         ]
       }
