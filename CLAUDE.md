@@ -53,6 +53,10 @@ ADR にすべき決定の起票が後回しになるなら、`docs/decisions/_in
   - pin 後（行が `🔍 reviewed`）: 実装はこの行に従う。pin 済みから逸脱・追加するときは先に ADR（`docs/decisions/`）を起票し、ユーザ確認後に表を更新する（思いつきで外れない）。
 - 検討途中の候補は `docs/app-design/technical.md` に置き、決定だけ表へ反映する（二重管理しない）。
 
+## コードを書くとき
+
+実装に入る前に `docs/08-CODING.md`（コーディング規則）を読む。スタイルの機械的強制は lint / formatter / typecheck に委譲し、この doc は判断を要する規則だけを持つ。pin 後は commit 前に利用可能な検証を通す。
+
 ## 透明性
 
 - 非自明なコマンド（git 操作、ビルド、削除、外部呼び出し等）は実行前に1行で何をするか宣言する。
@@ -71,3 +75,4 @@ ADR にすべき決定の起票が後回しになるなら、`docs/decisions/_in
 - `docs/00-INDEX.md` — docs 全体の索引と読む順
 - `docs/05-PROGRESS.md` — 現在地・次タスク・レビュー待ち
 - `docs/02-GUIDELINES.md` — 運用ルールの詳細
+- `docs/08-CODING.md` — コーディング規則（実装時に読む）

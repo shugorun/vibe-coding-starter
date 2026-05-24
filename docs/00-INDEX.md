@@ -13,6 +13,7 @@
 5. [04-ARCHITECTURE.md](04-ARCHITECTURE.md) - 技術構成、レイヤ、実装方針
 6. [06-VALIDATION.md](06-VALIDATION.md) - テスト、検証、受け入れ基準
 7. [07-RELEASE.md](07-RELEASE.md) - リリース準備、運用、公開チェック
+8. [08-CODING.md](08-CODING.md) - コーディング規則（実装時に読む。スタイルは lint へ委譲）
 
 ## 成長するフォルダ
 
