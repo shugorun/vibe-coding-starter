@@ -55,7 +55,7 @@ ADR にすべき決定の起票が後回しになるなら、`docs/decisions/_in
 
 ## コードを書くとき
 
-実装に入る前に `docs/08-CODING.md`（コーディング規則）を読む。スタイルの機械的強制は lint / formatter / typecheck に委譲し、この doc は判断を要する規則だけを持つ。pin 後は commit 前に利用可能な検証を通す。
+実装に入る前に `docs/08-CODING.md`（コーディング規則）を読む。整形・スタイルは lint / formatter / typecheck に委譲し、**最初にコードを書くときにその言語の標準ツールを導入する**（引き返せる決定なので聞かず、progress に1行記録）。commit 前にそれらを通すのが checkpoint の緑。
 
 ## 透明性
 
