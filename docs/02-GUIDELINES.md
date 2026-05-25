@@ -112,7 +112,7 @@
 
 ## 実装ルール
 
-- 着手前に `08-CODING.md`（規則）/ `09-ENVIRONMENT.md`（環境）を読み、既存コード・docs を読んでから変更する。スタックは `04-ARCHITECTURE.md` の表に従う（pin 後の逸脱・追加は ADR 先行、探索/MVP 期は progress 一行）。手順は `/work`。
+- 着手前に `08-CODING.md`（規則）/ `09-ENVIRONMENT.md`（環境）を読み、既存コード・docs を読んでから変更する。スタックは作業場で従う先が変わる: 本実装(`app/`)は `04-ARCHITECTURE.md` の pin 済み表（逸脱・追加は ADR 先行）、MVP(`mvp/`)は `mvp-design/technical.md`（使い捨て・ADR 不要）。手順は `/work`。
 - 実装で仕様が変わったら spec / app-design / ADR を更新する。一方通行決定だけ確認してから実装し、引き返せる部分は先行してよい（上「レビューゲート」）。
 
 ## ドキュメント分割
