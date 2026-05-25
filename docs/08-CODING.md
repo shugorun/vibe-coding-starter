@@ -1,6 +1,6 @@
 # Coding Rules
 
-実装の前に読む（環境の前提・罠は `09-ENVIRONMENT.md`）。整形・スタイル・import 順・言語固有の型ルールはツール（formatter / linter / typecheck）に任せる。下記は**判断を要する規則**だけ。数値はすべて「目安」＝分割・抽出を検討する閾値であって禁止ではない。
+実装の前に読む（環境の前提・制約は `09-ENVIRONMENT.md`）。整形・スタイル・import 順・言語固有の型ルールはツール（formatter / linter / typecheck）に任せる。下記は**判断を要する規則**だけ。数値はすべて「目安」＝分割・抽出を検討する閾値であって禁止ではない。
 
 ## 最初にコードを書くときにツールを入れる
 
@@ -66,5 +66,5 @@
 
 - `04-ARCHITECTURE.md` — スタック表 / レイヤ方針 / ディレクトリ方針（mvp/ と app/）
 - `06-VALIDATION.md` — テスト・検証レイヤ
-- `09-ENVIRONMENT.md` — クライアント環境・ツール版・環境の罠
+- `09-ENVIRONMENT.md` — クライアント環境・ツール版・環境の制約と回避策
 - `02-GUIDELINES.md` — checkpoint / commit / レビューゲート

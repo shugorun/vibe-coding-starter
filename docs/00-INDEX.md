@@ -14,7 +14,7 @@
 6. [06-VALIDATION.md](06-VALIDATION.md) - テスト、検証、受け入れ基準
 7. [07-RELEASE.md](07-RELEASE.md) - リリース準備、公開チェック
 8. [08-CODING.md](08-CODING.md) - コーディング規則（実装時に読む）
-9. [09-ENVIRONMENT.md](09-ENVIRONMENT.md) - クライアント環境・ツール版・環境の罠（実装時に読む）
+9. [09-ENVIRONMENT.md](09-ENVIRONMENT.md) - クライアント環境・ツール版・環境の制約と回避策（実装時に読む）
 
 ## 成長するフォルダ
 
@@ -23,7 +23,7 @@
 - [app-design/](app-design/) - 作ると決めた 1 つのアイデアの詳細設計（考え中の作業場。固まったら `01-PRODUCT` / `04-ARCHITECTURE` に反映）
 - [specs/](specs/) - 機能別仕様
 - [decisions/](decisions/) - ADR。1 決定 = 1 ファイル
-- [issues/](issues/) - 詰まり、罠、既知不具合（`open/` / `resolved/`）
+- [issues/](issues/) - このプロジェクトの解決すべき問題（不具合・ブロッカー。`open/` / `resolved/`）
 - [progress/](progress/) - 週次作業ログ
 - [research/](research/) - 技術調査、競合調査、参考資料
 
@@ -37,7 +37,7 @@
 明示的に使うプロジェクト内スキル。
 
 - `/catchup-project` - セッション開始時の現在地復元
-- `/work` - 自然文の作業依頼の既定フロー（着手前に確認 → 作業単位ごとに進め、罠→issue・判断→ADR → checkpoint）
+- `/work` - 自然文の作業依頼の既定フロー（着手前に確認 → 作業単位ごとに進め、問題→issue・判断→ADR → checkpoint）
 - `/checkpoint` - 作業単位の区切りで progress 追記 + 緑なら commit（`/work` の④。境界では自動実行）
 - `/wrapup-project` - セッション終了時の記録更新 + commit + push
 

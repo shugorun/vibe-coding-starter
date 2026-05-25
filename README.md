@@ -35,7 +35,7 @@ P0 初期化 → P1 アイデア → P2 MVP → P3 app-design → P4 spec → P5
 /catchup-project
 ```
 
-その後、作りたいこと・直したいことをそのまま書くと、エージェントが `/work`（着手前に確認 → 作業単位ごとにコード/docs を進め、罠→issue・判断→ADR → checkpoint）で進める。
+その後、作りたいこと・直したいことをそのまま書くと、エージェントが `/work`（着手前に確認 → 作業単位ごとにコード/docs を進め、問題→issue・判断→ADR → checkpoint）で進める。
 
 ```text
 家計簿アプリのアイデアを詰めたい
@@ -72,19 +72,19 @@ ideas/        何を作るか（壁打ち）
             -> app/ + 06-VALIDATION.md  本実装 + 検証
 ```
 
-横断ログ: `progress/`（作業）, `decisions/`（ADR）, `issues/`（詰まり）, `research/`（調査）, `09-ENVIRONMENT.md`（環境の罠）。
+横断ログ: `progress/`（作業）, `decisions/`（ADR）, `issues/`（解決すべき問題）, `research/`（調査）, `09-ENVIRONMENT.md`（環境の制約・回避策）。
 
 ## 環境
 
 - Claude Code 前提。Windows / macOS / Linux で動く。Node は Claude Code が要求するので追加インストール不要。
 - フックは `.claude/hooks/*.cjs`、`.claude/settings.json` から `node` で呼ばれる。
 - 日付・週番号は手計算せず OS のコマンドで取得する（Unix系: `date +%G-W%V`、Windows: `Get-Date`）。
-- クライアント固有の環境情報・踏んだ罠は `docs/09-ENVIRONMENT.md` に貯める。
+- クライアント固有の環境情報・環境起因の制約と回避策は `docs/09-ENVIRONMENT.md` に貯める。
 
 ## 運用原則
 
 - docs は常に進化する。古くなった docs は実装と同じ変更単位で直す。
 - 技術スタックは `docs/04-ARCHITECTURE.md` のスタック表が唯一の正。pin 後の逸脱・追加は ADR 起票 → 承認後に表を更新する。
-- 非自明な判断は ADR（`docs/decisions/`）、詰まりや罠は issue（`docs/issues/`）に残す。`/work` が各ステップで起票する。
+- 非自明な判断は ADR（`docs/decisions/`）、解決すべき問題は issue（`docs/issues/`）に残す。`/work` が各ステップで起票する。
 - レビューは一方通行（不可逆）な決定だけユーザ確認する。引き返せる決定は進めて progress に根拠を残す。
 - 作業単位の区切りで `/checkpoint`、セッション終了時は `/wrapup-project`（commit + push まで）。
