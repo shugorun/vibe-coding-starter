@@ -9,7 +9,7 @@
 - ユーザに聞かない。デフォルト構成の導入は引き返せる決定。選んだツールを progress の「決めたこと」に1行残す。
 - 標準的な選択: TS/JS → ESLint + Prettier（+ `tsc --strict`） / Python → Ruff（+ pyright か mypy） / Go → `gofmt` + `go vet` / Rust → `rustfmt` + Clippy。迷ったらエコシステムの定番を採る。
 - 導入したら下記「検証」節に設定ファイルへのリンクを足す。
-- 使い捨ての mvp / スパイクは省略してよい（その旨を progress に残す）。
+- 使い捨ての MVP（`mvp/`）/ PoC スパイク（`poc/`）は省略してよい（その旨を progress に残す）。
 
 以後、**commit の前にこれらを通す**。全通過が checkpoint の「緑」の条件（`02-GUIDELINES.md`「チェックポイント」）。
 

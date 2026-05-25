@@ -58,8 +58,9 @@ MVP を mvp/ に作って
 - `.claude/hooks/` - セッション開始・終了フック（クロスプラットフォームな Node `.cjs`）。
 - `.claude/settings.json` - フック登録と許可ポリシー。
 - `docs/` - 設計・要件・進捗・意思決定ログ（入口は `docs/00-INDEX.md`）。
-- `mvp/` - P2 の使い捨てプロトタイプ。
-- `app/` - P5 の本実装（0 から）。
+- `mvp/` - P2 の使い捨て製品プロトタイプ。
+- `poc/` - 使い捨て技術スパイク（any phase。結論は research / spec へ）。
+- `app/` - P5 の本実装（0 から。mvp/・poc/ を参照しない）。
 
 ## ドキュメントの流れ
 

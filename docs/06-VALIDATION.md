@@ -39,4 +39,4 @@
 ## 更新ルール
 
 - 実装で新しいリスクが見つかったらここに検証項目を追加する。
-- PoC 結果は `research/` または spec の `validation.md` に記録し、ここから参照する。
+- PoC のコードは `poc/`（使い捨て）。結論は `research/` か spec の `validation.md` に記録し、ここから参照する。
