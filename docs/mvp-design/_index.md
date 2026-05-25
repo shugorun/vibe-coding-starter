@@ -7,6 +7,7 @@ P2（MVP）の作業場。`mvp/` の使い捨てプロトタイプで**何を試
 | ファイル | 役割 |
 |---|---|
 | [scope.md](scope.md) | 作る MVP のスコープ（可変） |
+| [technical.md](technical.md) | 使い捨ての技術構成（種別・言語・FW・起動。設計は書かない） |
 | [experiments.md](experiments.md) | 実験ログ（変種・設定・結果・学び／時系列） |
 | [switches.md](switches.md) | 切り替え管理（生きている変種と切替方法＝可逆性の台帳） |
 | [feedback.md](feedback.md) | ユーザ（あなた）のフィードバック |

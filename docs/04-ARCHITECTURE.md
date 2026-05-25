@@ -6,7 +6,7 @@
 
 **このスタック表が実装の唯一の正（pin 後）。** 行の status で段階が変わる:
 
-- **探索 / MVP 期（行が `📝 draft`）**: 選定は `app-design/technical.md` の draft + progress「決めたこと」一行で進めてよい。ADR は不可逆・横断的な選定にだけ任意で起票。決まり次第この表に反映する。
+- **pin 前（行が `📝 draft`）**: この表は本実装(P5)のスタック。**P3 app-design で 0 から検討**（候補は `app-design/technical.md`）し、決まり次第この表に反映 → P3 ゲートで pin。**MVP(P2) の使い捨て技術構成はこの表に載せず `docs/mvp-design/technical.md`** に書く。
 - **pin 後（行が `🔍 reviewed`）**: 実装はこの行に従う。逸脱・追加は先に ADR（`docs/decisions/`）起票 → ユーザ承認後に表を更新する。
 
 **pin（確定・固定。定義は `02-GUIDELINES.md`「status 定義」）= ユーザ承認で該当行を `🔍 reviewed` にすること**（**P3 ゲート**で本実装のスタックを確定）。**この表は本実装(P5)のスタック**であり、P2 MVP の使い捨てプロトタイプの技術選定は載せない（MVP のスタックは progress / `mvp/README.md` に軽く記録するだけで、本実装には引き継がない —— 例: 本番モバイルでも MVP はウェブで試した、等）。

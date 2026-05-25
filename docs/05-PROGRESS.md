@@ -23,7 +23,7 @@
 - [ ] 作るアイデアを `docs/ideas/<slug>.md` に記録
 - [ ] `01-PRODUCT.md` に初版（名前・一言・主要ユーザ・価値仮説）
 - [ ] MVP で試す中核体験を 1 行で言える
-- [ ] MVP を最小コストで作る手段（種別・言語 / FW）を決める（本実装の種別と別でよい。pin せず progress + `mvp/README.md` に記録）
+- [ ] MVP を最小コストで作る手段（種別・言語 / FW）を決める（本実装の種別と別でよい。pin せず progress + `docs/mvp-design/technical.md` に記録）
 
 ## 進行中
 
