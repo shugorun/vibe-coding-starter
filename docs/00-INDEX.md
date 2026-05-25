@@ -36,7 +36,7 @@
 明示的に使うプロジェクト内スキル。
 
 - `/catchup-project` - セッション開始時の現在地復元
-- `/work` - 自然文の作業依頼の既定フロー（確認 → コーディング → docs更新 → commit）
+- `/work` - 自然文の作業依頼の既定フロー（着手前に確認 → 作業単位ごとに進め、罠→issue・判断→ADR → checkpoint）
 - `/checkpoint` - 作業単位の区切りで progress 追記 + 緑なら commit（`/work` の④。境界では自動実行）
 - `/wrapup-project` - セッション終了時の記録更新 + commit + push
 

@@ -15,17 +15,17 @@
 
 ## スキルの使い分け
 
-4 つのスキルは一直線のフローではなく、**3 つの階層**で働く（catchup/wrapup がセッションを挟み、その中で `/work` を何度も回し、各 `/work` の最後が `/checkpoint`）。
+4 つのスキルは一直線のフローではなく、**3 つの階層**で働く（catchup/wrapup がセッションを挟み、その中で `/work` を何度も回し、各作業単位の区切りが `/checkpoint`）。
 
 ```text
 /catchup-project           # セッション開始（1 回）— 現在地サマリを復元
-  /work … /work … /work    # 依頼ごとに何度でも — ①確認 ②コーディング ③docs更新 ④commit
+  /work … /work … /work    # 依頼ごとに何度でも — 確認 → 単位に分解 → 各単位を進め checkpoint
 /wrapup-project            # セッション終了（1 回）— docs 反映 → commit + push
 ```
 
 - **セッションを挟む（各 1 回）**: 開始 `/catchup-project`、終了 `/wrapup-project`。
-- **依頼ごと（セッション中に何度でも）**: 自然文の作業依頼は `/work` が本体。各ステップで該当規則 doc を読む（②→`08-CODING` / `09-ENVIRONMENT`、③→下記「記録ルール」）。
-- **`/work` の④commit**: `/checkpoint`（progress 追記 → 検証 → 緑なら commit）。`/work` の中で呼ばれるが、「コミットだけ」したいときは単独でも使える。
+- **依頼ごと（セッション中に何度でも）**: 自然文の作業依頼は `/work` が本体。一直線の手順ではなく **固定点（着手前の確認・区切りの commit）＋ 作業ループ**で、規則読み・罠→issue・判断→ADR はループ中に随時発火する不変条件（手順は `/work` スキル）。
+- **作業単位の区切り = commit**: `/checkpoint`（progress 追記 → 検証 → 緑なら commit）。`/work` の中で呼ばれるが、「コミットだけ」したいときは単独でも使える。
 
 ## 作業中の記録ルール
 
