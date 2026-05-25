@@ -114,6 +114,8 @@
 | `🚧 implementing` | 実装中 |
 | `✅ done` | 初版完了 |
 
+**pin（ピン留め）** = `04-ARCHITECTURE.md` のスタック表の行を、ユーザ承認で `🔍 reviewed` にして**確定・固定**する操作（P3 ゲート）。pin 後はその行が実装の唯一の正になり、逸脱・追加は ADR 先行（`docs/decisions/` 起票 → 承認 → 表更新）。MVP の使い捨てスタックは pin しない。
+
 補助（絵文字なし可）: `inbox` / `exploring` / `active` / `stale` / `superseded` / `discarded`。レーン固有: ideas は `candidate` / `promoted`、ADR は `Proposed` / `Accepted` / `Deprecated` / `Superseded`、issues は `Open` / `Resolved`。
 
 ## 実装ルール
