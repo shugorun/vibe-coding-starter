@@ -65,7 +65,7 @@ MVP を mvp/ に作って
 
 ```text
 ideas/        何を作るか（壁打ち）
-  -> mvp/           最小実装でコンテンツを確定（使い捨て）
+  -> mvp/ + mvp-design/   最小実装でコンテンツを確定（使い捨て／実験記録）
   -> app-design/    どう作るか（考え中の作業場）
        -> 01-PRODUCT.md / 04-ARCHITECTURE.md  固まった現在の真実
        -> specs/    機能仕様

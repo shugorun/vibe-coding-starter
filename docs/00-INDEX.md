@@ -19,6 +19,7 @@
 ## 成長するフォルダ
 
 - [ideas/](ideas/) - 何を作るかのアイデア壁打ち。1 アイデア = 1 ファイル
+- [mvp-design/](mvp-design/) - P2 MVP の実験記録（スコープ・実験・切替・フィードバック・問題）。生ログはここ、確定学びは app-design / progress へ昇格
 - [app-design/](app-design/) - 作ると決めた 1 つのアイデアの詳細設計（考え中の作業場。固まったら `01-PRODUCT` / `04-ARCHITECTURE` に反映）
 - [specs/](specs/) - 機能別仕様
 - [decisions/](decisions/) - ADR。1 決定 = 1 ファイル

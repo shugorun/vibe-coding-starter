@@ -33,7 +33,8 @@
 |---|---|
 | 新しいアイデア・仮説が出た | `docs/ideas/` |
 | 作るアイデアを 1 つに決めた | `docs/ideas/` に確定 + `01-PRODUCT.md` 初版 |
-| MVP の学び・確定したコンテンツ | `docs/progress/` + `docs/app-design/` |
+| MVP の実験・切替変種・フィードバック・困りごと（P2 の生ログ） | `docs/mvp-design/` |
+| MVP の学び・確定したコンテンツ（昇格） | `docs/progress/` + `docs/app-design/` |
 | 詳細設計（スコープ / 周辺機能 / 技術）を詰めた | `docs/app-design/` →（固まったら）`01-PRODUCT.md` / `04-ARCHITECTURE.md` |
 | 機能単位の仕様を書いた | `docs/specs/` |
 | 非自明な技術・プロダクト判断をした | `docs/decisions/`（ADR） |
