@@ -1,15 +1,15 @@
 # Architecture
 
-確定した技術構成と設計方針を簡潔に保つ場所（curated doc）。アプリの種類が決まったら更新する。検討中の技術選定は `app-design/technical.md` で行い、決まった内容だけここへ反映する。両者を二重管理しない。
+確定した技術構成と設計方針を簡潔に保つ（curated doc）。検討中の技術選定は `app-design/technical.md` で行い、決まった内容だけここへ反映する（二重管理しない）。
 
 ## 技術スタック
 
 **このスタック表が実装の唯一の正（pin 後）。** 行の status で段階が変わる:
 
-- **探索 / MVP 期（行が `📝 draft`）**: 技術選定は `app-design/technical.md` の draft + progress「決めたこと」一行で進めてよい。ADR は不可逆・横断的な選定にだけ任意で起票（02-GUIDELINES「意思決定の記録（2層）」）。決まり次第この表に反映する。MVP を ADR で止めない。
-- **pin 後（行が `🔍 reviewed`）**: 実装はこの行に従う。pin 済みの技術から逸脱・追加するときは、先に ADR（`docs/decisions/`）を起票し、ユーザ承認後にこの表を更新する。思いつきで pin 済みスタックから外れない。
+- **探索 / MVP 期（行が `📝 draft`）**: 選定は `app-design/technical.md` の draft + progress「決めたこと」一行で進めてよい。ADR は不可逆・横断的な選定にだけ任意で起票。決まり次第この表に反映する。
+- **pin 後（行が `🔍 reviewed`）**: 実装はこの行に従う。逸脱・追加は先に ADR（`docs/decisions/`）起票 → ユーザ承認後に表を更新する。
 
-検討途中の候補は `app-design/technical.md`、決定だけここへ移す（二重管理しない）。pin = ユーザ承認時に該当行の status を `🔍 reviewed` にする。
+pin = ユーザ承認時に該当行の status を `🔍 reviewed` にする（P3 のゲート）。
 
 | 領域 | 採用 | status | ADR | 根拠 |
 |---|---|---|---|---|
@@ -21,29 +21,34 @@
 | 監視 | 未設定 | 📝 draft | | |
 | テスト | 未設定 | 📝 draft | | |
 
+## ディレクトリ方針
+
+リポジトリ直下にコードの作業場を 2 つ持つ。**MVP と本実装を物理的に分け、本実装は MVP コードを引き継がない。**
+
+```text
+mvp/   P2 の使い捨てプロトタイプ。最小フロント＋中核機能。綺麗さは問わない。
+app/   P5 の本実装。0 から書く。mvp/ を参照しない。
+docs/  設計・要件・進捗・意思決定ログ。
+```
+
+本実装内のレイヤ・ディレクトリ詳細はスタック確定後（P3-P5）に下記を具体化する。
+
+```text
+app/
+  app/        UI / Screens
+  features/   Application / Use cases
+  domain/     Models
+  infra/      API, DB, Storage
+  shared/
+```
+
 ## レイヤ方針
 
 ```text
-UI / Screens
-  -> Application / Use cases
-  -> Domain / Models
-  -> Infrastructure / API, DB, Storage
+UI / Screens -> Application / Use cases -> Domain / Models -> Infrastructure / API, DB, Storage
 ```
 
-プロジェクト固有の実装方針が決まったら、ここにレイヤ責務と禁止事項を書く。
-
-## ディレクトリ方針
-
-未設定。実装プロジェクトの技術スタックに合わせて更新する。
-
-```text
-src/
-  app/
-  features/
-  shared/
-  domain/
-  infra/
-```
+依存方向は上から下の一方向。逆流させない。プロジェクト固有の責務・禁止事項は確定後ここに書く。
 
 ## 設計判断
 
@@ -55,8 +60,4 @@ src/
 
 ## 未確定事項
 
-- 技術スタック
-- データ永続化
-- 認証の有無
-- デプロイ先
-- テスト方針
+- 技術スタック / データ永続化 / 認証の有無 / デプロイ先 / テスト方針

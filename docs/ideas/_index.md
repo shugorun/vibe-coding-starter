@@ -9,7 +9,7 @@
 - `inbox` - 未整理
 - `exploring` - 壁打ち中
 - `candidate` - 作る候補
-- `promoted` - requirement に昇格
+- `promoted` - app-design に昇格
 - `discarded` - 採用しない
 
 ## 一覧

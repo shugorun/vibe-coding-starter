@@ -94,7 +94,7 @@ idle -> loading -> ready
 
 ## 13. 関連
 
-- requirement:
+- app-design:
 - ADR:
 - issue:
 - research:

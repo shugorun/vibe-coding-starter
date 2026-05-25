@@ -17,7 +17,7 @@ Architecture Decision Records。1 決定 = 1 ファイル。既存 ADR を大き
 
 ## ADR候補（未起票）
 
-ADR 化すべきだが起票が後回しの決定をここにためる（透明性を落とさないため）。出所は progress の「決めたこと」。`03-ROADMAP.md` の M3「技術方針」やマイルストンでまとめて正式 ADR に昇格する。
+ADR 化すべきだが起票が後回しの決定をここにためる（透明性を落とさないため）。出所は progress の「決めたこと」。P3（app-design でスタック pin）でまとめて正式 ADR に昇格する。
 
 | 候補 | 出所（progress 日付） | 対象 | メモ |
 |---|---|---|---|
@@ -49,7 +49,7 @@ Proposed
 ユーザ承認日 / コメント要旨。
 
 ## 関連
-- requirement:
+- app-design:
 - spec:
 - issue:
 ```

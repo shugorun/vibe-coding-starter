@@ -13,7 +13,7 @@
 
 ## 一覧
 
-| ID | 機能 | slug | status | 関連 requirement | 実装状況 |
+| ID | 機能 | slug | status | 関連 app-design | 実装状況 |
 |---|---|---|---|---|---|
 | なし | | | | | |
 

@@ -80,4 +80,3 @@ YYYY-MM-DD HH:mm
 
 - research:
 - app-design:
-- requirement:

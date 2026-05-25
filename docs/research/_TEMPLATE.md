@@ -54,7 +54,6 @@ YYYY-MM-DD HH:mm
 
 - idea:
 - app-design:
-- requirement:
 - spec:
 - ADR:
 
