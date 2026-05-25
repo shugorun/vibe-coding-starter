@@ -124,7 +124,7 @@
 
 - 1 ファイルが 300 行を超えそうなら分割を検討する（catchup 肥大化対策）。
 - `05-PROGRESS.md` は現在地サマリに徹し、詳細ログは `progress/` へ。
-- ideas は「何を作るか」だけ。決めた後の具体化は `app-design/` へ。**アプリ種別・言語は P1（MVP の前）で一方通行決定として確定**し、`04-ARCHITECTURE.md` の該当行を pin する。app-design(P3) は残りのスタックを詰めて pin する。
+- ideas は「何を作るか」だけ。決めた後の具体化は `app-design/` へ。**MVP の作り方（種別・言語）は P1 で軽く決め（使い捨て・本実装と別でよい）、本実装のスタックは P3 app-design で 0 から確定して `04-ARCHITECTURE.md` を pin する。** MVP の技術選定は本実装に引き継がない。
 - `app-design/` は考え中の作業場。固まった内容は `01-PRODUCT.md` / `04-ARCHITECTURE.md` に反映し二重管理しない。
 - research はトピック単位でファイルを作り、各エントリ内に日時を記録する。
 - spec が長くなったら `states.md` / `api.md` / `ux.md` / `validation.md` に分割する。
