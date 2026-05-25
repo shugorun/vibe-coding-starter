@@ -13,16 +13,19 @@
 - **ゲートは「次フェーズを始めるのに最低限必要な決断・入力」を含む。** 不足したまま進むと手戻りになる（例: 言語決定は MVP を作る前 = P1 のゲート）。
 - **MVP(P2) は `mvp/`、本実装(P5) は `app/`。** MVP は使い捨て。本実装は MVP コードを引き継がず 0 から書く。
 
-## 作業フロー
+## スキルの使い分け
 
-| 場面 | スキル | 役割 |
-|---|---|---|
-| セッション開始 | `/catchup-project` | 現在地サマリを復元 |
-| 通常の作業依頼（自然文） | `/work` | 確認 → コーディング → docs更新 → commit |
-| 作業単位の区切り | `/checkpoint` | progress 追記 → 検証 → 緑なら commit（`/work` の④） |
-| セッション終了 | `/wrapup-project` | docs 反映 → commit + push |
+4 つのスキルは一直線のフローではなく、**3 つの階層**で働く（catchup/wrapup がセッションを挟み、その中で `/work` を何度も回し、各 `/work` の最後が `/checkpoint`）。
 
-通常作業は `/work` が本体。各ステップで該当規則 doc を読む（コーディング→`08-CODING`/`09-ENVIRONMENT`、docs更新→下記「記録ルール」）。
+```text
+/catchup-project           # セッション開始（1 回）— 現在地サマリを復元
+  /work … /work … /work    # 依頼ごとに何度でも — ①確認 ②コーディング ③docs更新 ④commit
+/wrapup-project            # セッション終了（1 回）— docs 反映 → commit + push
+```
+
+- **セッションを挟む（各 1 回）**: 開始 `/catchup-project`、終了 `/wrapup-project`。
+- **依頼ごと（セッション中に何度でも）**: 自然文の作業依頼は `/work` が本体。各ステップで該当規則 doc を読む（②→`08-CODING` / `09-ENVIRONMENT`、③→下記「記録ルール」）。
+- **`/work` の④commit**: `/checkpoint`（progress 追記 → 検証 → 緑なら commit）。`/work` の中で呼ばれるが、「コミットだけ」したいときは単独でも使える。
 
 ## 作業中の記録ルール
 
