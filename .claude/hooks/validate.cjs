@@ -2,7 +2,8 @@
 // /checkpoint・/wrapup-project から呼ばれる。FAIL がある間は commit しない。
 //
 // 検査:
-//   1. 相対リンク切れ — docs/**/*.md + ルート直下 *.md + mvp/poc/app の README.md の [text](path) を実体照合
+//   1. 相対リンク切れ — docs/**/*.md + ルート直下 *.md + mvp/poc/app/scaffold の README.md の [text](path) を実体照合
+//      （scaffold/ は README.md のみ対象 — 配下を走査すると node_modules を巻き込むため）
 //   2. 行数上限 — CAPS と checkLineCounts() が唯一の正（常時ロード合計・SKILL.md は同関数内）
 //   3. DECISIONS.md 行書式 — 「## ログ」以降の非空行は `- YYYY-MM-DD ` で始まる
 //   4. git dirty なのに docs/STATE.md が差分に無い → FAIL（--skip-state-check で免除。
@@ -47,7 +48,7 @@ function collectMdFiles() {
       else if (e.name.endsWith(".md")) files.push(p);
     }
   })(join(repoRoot, "docs"));
-  for (const lane of ["mvp", "poc", "app"]) {
+  for (const lane of ["mvp", "poc", "app", "scaffold"]) {
     const p = join(repoRoot, lane, "README.md");
     if (existsSync(p)) files.push(p);
   }

@@ -4,18 +4,18 @@
 
 ## フェーズ
 
-P0 初期化 / ゲート 0/1 → [ROADMAP.md](ROADMAP.md)（WS3 mvp scaffold が未導入のためテンプレ未完成）
+P0 初期化 / ゲート 1/1 → [ROADMAP.md](ROADMAP.md)
 
 ## 今
 
-- WS2: mattpocock/skills 由来の7スキル（grill / tdd / diagnose / prototype / to-prd / to-issues / zoom-out）を branch `phase1/ws2-skills` で改変同梱。grill-me は grill に置換済み。批評指摘（採用13件）の修正を反映済み。
+- WS2（スキル7本: grill / tdd / diagnose / prototype / to-prd / to-issues / zoom-out）と WS3（[scaffold/](../scaffold/README.md): 標準スタック・トークン層・verify 接続）を main に統合済み。テンプレの構造・スキル・スタックが揃った。
 
 ## 次
 
-1. WS2 の QA 照合 → main へのマージ承認
-2. WS3: mvp/ scaffold 実体（焼き込みスタック）導入
-3. WS5: catchup 読書量の実測検証
+1. WS4: デザイン言語の確定（テーマ variant 2〜3案 → ユーザ選択 → tokens.css 反映）
+2. WS5: サンプルアプリ E2E（catchup 読書量 ≤150行 の実測検証を含む）
+3. テンプレ配布時の初期化（この STATE / DECISIONS ログを初期状態へ戻す手順は WS5 で確定）
 
 ## レビュー待ち
 
-- WS2 の main マージ（対象: branch `phase1/ws2-skills` / なぜ一方通行か: スキル7本の構成・発動条件がテンプレの操作面を確定する / 目安: 15-20分）
+- なし（WS2 / WS3 のマージはユーザ承認済み・実施済み）

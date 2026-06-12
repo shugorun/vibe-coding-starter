@@ -37,4 +37,5 @@
 - `CLAUDE.md` — 常時ロードの運用契約
 - `.claude/` — スキル・フック・設定
 - `docs/` — 記録の置き場（上表 + [docs/mvp.md](docs/mvp.md)）
+- [scaffold/](scaffold/README.md) — 標準スタックの家。mvp/・app/ はコピーで開始
 - [mvp/](mvp/README.md)・[poc/](poc/README.md)・[app/](app/README.md) — 各レーンの役割は各 README

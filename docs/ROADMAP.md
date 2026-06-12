@@ -6,7 +6,7 @@
 
 ### P0 初期化（テンプレ scaffold）
 
-- [ ] docs / skills / hooks / mvp scaffold が配置済み（テンプレ初期状態）
+- [x] docs / skills / hooks / scaffold/（標準スタック）が配置済み（テンプレ初期状態）
 
 ### P1 MVP 設計
 
