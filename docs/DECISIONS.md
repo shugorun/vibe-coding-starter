@@ -15,3 +15,7 @@
 - 2026-06-12 [stack] 決定: mvp/ も焼き込みスタック（Vite+React+TS+Tailwind+shadcn/ui+Vitest）を使用。scaffold 実体は WS3 で導入 — 理由: スタック説明の二重管理をなくす（関連: ARCHITECTURE.md）
 - 2026-06-12 [docs] 決定: 旧 06/07/08 は ARCHITECTURE.md / ROADMAP.md に統合し、CONTEXT.md は作らず用語は PRODUCT.md「用語」節 — 理由: 1事実1ファイル・YAGNI
 - 2026-06-12 [infra] 決定: grill-me スキルは暫定残置 — 理由: WS2 で grill に置換するまでの参照切れ防止
+- 2026-06-12 [infra] 決定: mattpocock/skills（MIT）から grill / tdd / diagnose / prototype / to-prd / to-issues / zoom-out の7本を改変同梱し、grill-me は grill（grill-me + grill-with-docs の統合後継）に置換 — 理由: 調査の浅さ・行き詰まり検知なしの弱点補完（出典表記は LICENSE 末尾）
+- 2026-06-12 [docs] 決定: issues は「問題」と「実装スライス」の2種別を同じ NNNN 連番・frontmatter status で管理し、起票は /to-issues に一本化 — 理由: 主担当1対1マップの復元（書式は issues/README）
+- 2026-06-12 [infra] 決定: diagnose の HITL 補助スクリプトは bash でなく Node（.cjs） — 理由: Windows 含む全 OS で追加依存なしに動く（フックと同方針）
+- 2026-06-12 [infra] 決定: 既存テスト緑を維持するリファクタは /tdd の発動条件に含める — 理由: 発動条件の穴（残すコードのリファクタの担い手不在）を塞ぎ、テスト緑のままの変更規律を /tdd に集約

@@ -10,7 +10,7 @@
 
 ### P1 MVP 設計
 
-grill-me で詰め、[mvp.md](mvp.md) と [PRODUCT.md](PRODUCT.md) の初版を書く。
+grill で詰め、[mvp.md](mvp.md) と [PRODUCT.md](PRODUCT.md) の初版を書く。
 
 - [ ] PRODUCT.md に初版（プロダクト名・一言説明・主要ユーザ・価値仮説）
 - [ ] mvp.md に「確かめたい問い」と作る / 作らないのスコープ

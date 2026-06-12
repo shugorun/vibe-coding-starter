@@ -19,3 +19,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+Third-party notice:
+
+The skills under .claude/skills/ whose SKILL.md carries a source
+attribution ("出典") are adapted from mattpocock/skills
+(https://github.com/mattpocock/skills), Copyright (c) 2026 Matt Pocock,
+used under the MIT License (same terms as above).

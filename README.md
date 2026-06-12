@@ -22,7 +22,7 @@
 /wrapup-project      セッション終了（push まで）
 ```
 
-着手前の合意形成は `/grill-me`。
+`/grill` `/to-prd` `/to-issues` `/tdd` `/diagnose` `/prototype` `/zoom-out` — 発動条件は各スキルの description が正。
 
 ## 記録のしくみ（3クラス）
 

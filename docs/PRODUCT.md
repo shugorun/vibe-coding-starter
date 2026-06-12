@@ -1,6 +1,6 @@
 # PRODUCT
 
-プロダクトの現在の真実（上書き型）。検討は chat + grill-me で行い、合意した内容だけをここに上書きする。機能の詳細は [specs/](specs/README.md) へ。
+プロダクトの現在の真実（上書き型）。検討は chat + grill で行い、合意した内容だけをここに上書きする。機能の詳細は [specs/](specs/README.md) へ。
 
 ## 識別
 
