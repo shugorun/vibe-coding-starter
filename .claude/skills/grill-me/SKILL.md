@@ -1,10 +1,19 @@
 ---
 name: grill-me
-description: Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill me".
+description: 計画・設計を質問攻めで詰める。「grill me」「質問攻め」「詰めて」「詳細を詰めてから始めたい」と言われたときに使う。
 ---
 
-Interview me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. For each question, provide your recommended answer.
+# Grill Me
 
-Ask the questions one at a time.
+**発動条件**: 以下のいずれかに該当するとき（`/work` の着手前確認で判断し、自動で実行してよい）。
+- ゴールが1文で言えない
+- 対象フェーズまたは作業スコープが未確定
+- ユーザ側の前提（制約・好み・利用可能なリソース）が未確認
 
-If a question can be answered by exploring the codebase, explore the codebase instead.
+**成功基準**: 各質問にユーザが回答し、次の作業単位の着手前提がすべて確認された時点で終了。
+
+決定ツリーの各分岐を順に解決し、決定間の依存関係を一つずつ解消する。各質問には推奨回答を添える。
+
+質問は1つずつ行う。
+
+コードベースを探索することで答えられる質問は、探索してから質問する。

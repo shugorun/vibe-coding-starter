@@ -1,55 +1,47 @@
-// Stop hook for the app-development boilerplate. Cross-platform (Node).
+// Stop フック（非ブロック・クロスプラットフォーム / Node）。
 //
-// Advisory (non-blocking) nudge: when there are UNCOMMITTED changes AND today has no
-// entry in docs/progress/, surface a `systemMessage` suggesting a checkpoint.
-// `systemMessage` is shown to the user (not fed to Claude), so the note is visible in
-// the normal view -- plain stdout from a Stop hook only surfaces in transcript mode.
+// 「本日コミットなし かつ 本日 docs/DECISIONS.md 追記なし」のとき、1日1回だけ
+// ソフトリマインドを systemMessage で表示する（クリーンツリーでも発火する）。
 //
-// Why "no entry for today" rather than just "dirty": the Stop hook fires after EVERY
-// turn, so a dirty-only check would nag on essentially every turn all day. Keying off
-// "today not logged yet" bounds the noise -- it nudges only while the checkpoint
-// discipline is being skipped, and goes silent the moment the first progress entry for
-// today exists. It never blocks the stop. A clean tree, or the bare template (no weekly
-// progress log), stays silent.
+// 1日1回の抑制: .git/vibe-stop-reminded に表示済みの日付を記録し、同日の2回目以降は沈黙する。
 
 const { execSync } = require("node:child_process");
-const { existsSync, readdirSync, readFileSync } = require("node:fs");
+const { existsSync, readFileSync, writeFileSync } = require("node:fs");
 const { join } = require("node:path");
 
-// Read stdin payload (Claude Code passes JSON). Skip if this stop is already a
-// continuation triggered by a previous stop hook.
+// 前の Stop フックからの継続なら何もしない。
 let payload = null;
 try { payload = JSON.parse(readFileSync(0, "utf8")); } catch { payload = null; }
 if (payload && payload.stop_hook_active) process.exit(0);
 
 const repoRoot = join(__dirname, "..", "..");
-
-// Only nudge when actual work happened this session.
-let dirty = false;
-try {
-  const out = execSync("git status --porcelain", {
-    cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"],
-  });
-  dirty = out.trim().length > 0;
-} catch { /* git unavailable / not a repo -> treat as clean */ }
-if (!dirty) process.exit(0);
+const gitDir = join(repoRoot, ".git");
+if (!existsSync(gitDir)) process.exit(0); // git 不在ならコミット判定ができないため沈黙
 
 const d = new Date();
 const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 
-const progressDir = join(repoRoot, "docs", "progress");
-let loggedToday = false;
+// 本日すでにリマインド済みなら沈黙（1日1回）。
+const marker = join(gitDir, "vibe-stop-reminded");
+try { if (readFileSync(marker, "utf8").trim() === today) process.exit(0); } catch { /* 未作成 */ }
+
+// 本日のコミットがあれば沈黙。
 try {
-  if (existsSync(progressDir)) {
-    for (const f of readdirSync(progressDir)) {
-      if (!f.endsWith(".md") || f === "_index.md") continue;
-      if (readFileSync(join(progressDir, f), "utf8").includes(today)) { loggedToday = true; break; }
-    }
-  }
-} catch { /* ignore */ }
-if (loggedToday) process.exit(0);
+  const out = execSync("git log --oneline --since=midnight", {
+    cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"],
+  });
+  if (out.trim() !== "") process.exit(0);
+} catch { /* コミット 0 件等は「本日コミットなし」として続行 */ }
+
+// 本日付の DECISIONS 追記があれば沈黙。
+try {
+  const decisions = readFileSync(join(repoRoot, "docs", "DECISIONS.md"), "utf8");
+  if (decisions.includes(`- ${today} `)) process.exit(0);
+} catch { /* ファイル不在は「追記なし」扱い */ }
+
+try { writeFileSync(marker, today + "\n"); } catch { /* マーカーが書けなくても通知はする */ }
 
 process.stdout.write(JSON.stringify({
-  systemMessage: `Note: uncommitted changes present but docs/progress/ has no entry for today (${today}). Consider /checkpoint for the finished work unit, or /wrapup-project before ending.`,
+  systemMessage: `Note: 本日のコミットも docs/DECISIONS.md への追記もまだない（${today}）。確定した判断があれば DECISIONS に1行、作業の区切りなら /checkpoint を。（本日の通知はこれで最後）`,
 }) + "\n");
 process.exit(0);

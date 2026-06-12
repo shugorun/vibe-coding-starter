@@ -1,86 +1,61 @@
 ---
 name: checkpoint
-description: 作業が一区切りついたとき、または「区切り」「チェックポイント」「コミットして」「ここまで記録して」と言われたときに使う。直前に完成した1作業単位を docs/progress/ に追記し、検証が緑なら commit する（push はセッション末の /wrapup-project でまとめる）。検証通過・フェーズ完了・非自明な判断・ブロッカー発見の境界では、ユーザに聞かれなくても自動で実行する。
+description: 作業単位の区切りで記録を確定し、commit までを行う。docs/DECISIONS.md に書く行が生まれた / 作業単位が完了した（検証が通った・機能スライスが動いた）/ ROADMAP のゲート項目を満たした / 問題・ブロッカーに当たった / 「区切り」「コミットして」と言われた、のいずれかで自動実行する。
 ---
 
 # Checkpoint
 
-作業単位の区切りで「progress 追記 → 検証 → 緑なら commit」を行う。粒度は **コミット1個分の動く増分**。チャット毎（細かすぎ）でもセッション末まとめ（粗すぎ）でもない。**push はここではしない**（リモート同期はセッション末の `/wrapup-project` でまとめる）。`/work` の④commit はこの手順を呼ぶ。
+**発動条件**: description のとおり（明示指示が無くても自動実行する）。
+**成功基準**: 1 checkpoint = 1 作業単位 = 1 commit。validate PASS。STATE.md が実態と一致。
 
-## いつ実行するか
+## 1. 取りこぼし照合
 
-以下の境界では、ユーザの明示指示が無くても自動で実行する。
+この作業単位で発生したのに**未記録**のものを各ファイルに追記する（記録済みなら何もしない。二重記載禁止）。checkpoint は全追記型ファイルに補完追記できる（書式は各ファイルのヘッダ / README が正）。
 
-- 検証（型 / lint / test / build / smoke のいずれか）が通った
-- 1 フェーズ / 1 機能スライスが動いた
-- 非自明な技術・プロダクト判断をした
-- 解決すべき問題・ブロッカーに当たった（その場合は `docs/issues/open/` に issue も起票）
+- (a) 決めたこと → `docs/DECISIONS.md`（一方通行なら `docs/adr/`）
+- (b) 残る問題 → `docs/issues/`
+- (c) 環境制約 → `docs/ENVIRONMENT.md`
+- (d) 新用語 → `docs/PRODUCT.md`「用語」節
+- (e) 現フェーズのゲート（`docs/ROADMAP.md`）を照合し、満たした項目に印を付ける。**[人間確認]** 項目は印を付けず、ユーザへ確認を出す
 
-ユーザが「区切り」「チェックポイント」「コミットして」「push して」等と言ったときも実行する。
+## 2. STATE 上書き
 
-## 実行手順
+`docs/STATE.md` の全節を現状に上書きする（節構成はファイル自身が正）。ゲート進捗は `docs/ROADMAP.md` へのポインタ1行のみ。
 
-### 1. 作業単位を1つに絞る
+## 3. 検証
 
-直前に完成した 1 つの作業単位だけを対象にする。複数単位を1エントリに詰めない（詰めると粒度が粗くなり読み返せなくなる）。
+利用可能な検証（`docs/ARCHITECTURE.md`「検証方針」）を回す。全通過 = 緑。検証が無いプロジェクトは動作確認を緑とみなす。
 
-### 2. progress に1エントリ追記
+## 4. validate
 
-`docs/progress/<week>.md`（無ければ作成）に **1 作業単位 = 1 エントリ**で追記する。1日分をまとめて1エントリに詰め込まない（読み返せなくなる）。週番号は手計算せず OS のコマンドで取得する（どちらも `2026-W21` 形式）:
+`node .claude/hooks/validate.cjs` を実行する（FAIL の扱いは厳守事項）。
 
-- Unix系（macOS / Linux）: `date +%G-W%V`
-- Windows PowerShell: `"{0}-W{1:D2}" -f (Get-Date).Year, [int](Get-Date -UFormat %V)`
+## 5. commit
 
-その日の最初のエントリ:
+宣言してから実行する。
 
-```markdown
-## YYYY-MM-DD
-
-### やったこと
-- ...
-
-### 決めたこと
-- ...
-
-### 次やること
-- ...
+```text
+git add -A    # secret が .gitignore 済みか確認
+git commit -m "<prefix> <内容>"
 ```
 
-同じ日の2つ目以降は見出しだけ `## YYYY-MM-DD（追記: <作業単位の短い名前>）` にして、同じ3セクションを書く。
+### commit prefix（ここが唯一の正）
 
-### 3. 検証
-
-プロジェクトで使える検証を走らせる（存在するものだけ: 型チェック / lint / unit / build / smoke など）。すべて通れば「緑」。検証が1つも無いプロジェクトは「動作確認した」を緑とみなしてよい。コーディング規則と lint ゲートの方針は `docs/08-CODING.md`。
-
-実装単位（`[impl]`）で技術選定をしたら、`docs/04-ARCHITECTURE.md` のスタック表との関係を確認する（段階で対応が変わる）:
-
-- **スタック表が `🔍 reviewed` で pin 済みの後**: 表に無いライブラリ/技術を入れていたら、commit 前に ADR 起票 → ユーザ承認の流れに乗せる（思いつきで pin 済みスタックから逸脱しない）。
-- **pin 前（表がまだ draft）**: ADR は必須にしない。選定理由を progress の「決めたこと」に一行残す。**P2 の使い捨て技術構成は `docs/mvp-design/technical.md`**、本実装スタックの候補検討は P3 の `docs/app-design/technical.md`。不可逆・横断的な選定だけ ADR 候補としてマークする（`docs/decisions/_index.md` の「ADR候補」、または progress「次やること」）。
-
-### 4. 取りこぼし照合（未記録のものだけ）
-
-commit の直前に、この作業単位で「記録すべきだが**まだ記録していない**」ものが無いか一度だけ振り返る（コーディング作業に限らず、起動・設定・調査の工程も対象）。**既に作業中に記録済みのもの（`docs/issues/`・`09-ENVIRONMENT`・ADR・各 `_index.md` に載っている）は対象外＝二重に起票しない。** 埋めるのは漏れだけ。
-
-- 環境起因で詰まり原因と回避策が分かった → `docs/09-ENVIRONMENT.md`（未記載なら追記）
-- その場で直しきれない／後で判断が要る問題が残った → `docs/issues/open/`（未起票なら起票）
-- 非自明な判断をした → ADR 候補 or ADR（未記録なら）
-
-すべて記録済み、または該当が無ければ何もせず commit へ進む。
-
-### 5. commit（緑のときだけ）
-
-実行するコマンドを宣言してから行う。push はしない（wrapup でまとめる）。
-
-- 緑: `git add -A`（`.env` 等の secret が `.gitignore` 済みであることを確認）→ commit（prefix 付きメッセージ）。
-- 赤 or 未完了: commit はしてよい。理由を progress の「次やること」に1行残す。
-
-commit メッセージは作業種別の prefix を付ける。prefix の唯一の正は `docs/02-GUIDELINES.md`「commit メッセージ prefix」の表（ここでは再掲しない）。一覧: `[docs]` / `[adr]` / `[spec]` / `[impl]` / `[mvp]` / `[issue]` / `[research]` / `[infra]` / `[poc]`。
+| prefix | 用途 |
+|---|---|
+| `[docs]` | docs・運用ルール |
+| `[adr]` | 一方通行決定の記録（docs/adr/） |
+| `[spec]` | 仕様（docs/specs/） |
+| `[impl]` | 本実装（app/） |
+| `[mvp]` | MVP（mvp/ と docs/mvp.md） |
+| `[issue]` | issue 起票・解決 |
+| `[research]` | 調査 |
+| `[infra]` | 設定・スキル・フック・ツール |
+| `[poc]` | 技術スパイク（poc/） |
 
 ## 厳守事項
 
-- 1 checkpoint = 1 作業単位 = 1 commit = 1 progress エントリ（記録なしで commit しない）。
-- 取りこぼし照合（手順4）は **未記録のものだけ**対象。作業中に起票/追記済みなら index で確認して再起票しない（二重起票禁止）。
-- secret をコミットに含めない（`.gitignore` を確認）。
-- ここでは push しない（push は `/wrapup-project` に集約）。
-- 本実装では、pin 済み（`🔍 reviewed`）スタックから `[impl]` で勝手に逸脱しない（ADR 先行）。MVP では`docs/mvp-design/technical.md`に使用スタックを追記すれば可。
-- curated doc（`01-PRODUCT` / `04-ARCHITECTURE` / `app-design` / `specs`）は checkpoint では基本触らない。フェーズ移行級の変化は別途、または `/wrapup-project` で反映する。
+- validate FAIL は絶対に commit しない。検証（テスト）赤のみ、やむを得ない場合は理由を STATE の「今」に1行残せば刻んでよい。
+- 複数の作業単位を1コミットに詰めない。
+- push はここではしない（/wrapup-project に集約）。
+- DECISIONS.md が 300 行を超えていたら剪定する（手順は同ファイルのヘッダ）。
