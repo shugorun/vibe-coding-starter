@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design Gallery — Tomoshibi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Shippori+Mincho:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* =========================================================================
+   デザイン言語「Tomoshibi」（Ver.1=状態を色相で区別）。正準 = この gallery + design/DESIGN.md。
+   ティールが唯一の操作色（リンク・ナビ含む）。ゴールドは炎＝ワードマーク・状態・暗面の発光で、操作には使わない。
+   見出し=Cormorant+Shippori(明朝)・本文=Inter+Noto・コード=JetBrains Mono。サイズはユーティリティ標準。
+   ========================================================================= */
+:root{
+  /* ライト */
+  --bg:#FDFCF8; --surface:#FFFFFC; --surface-sunken:#F2EBD9;
+  --text:#1B2A2B; --text-secondary:#4A6968; --text-muted:#5A7D7B;
+  --primary:#2F6E70; --primary-hover:#265A5C; --on-primary:#FAF6EC;
+  --border:#D8CFB6; --border-strong:#5A7D7B;
+  /* ゴールド3分割 */
+  --gold-text:#8A5E12; --gold-fill:#E8C56A; --gold-deco:#B8862F;
+  /* 派生2色（Ver.1） */
+  --terracotta:#A8472B; --terracotta-fill:#F6E2DA;
+  --indigo:#34466E; --indigo-fill:#E2E6F2;
+  /* 暗い面 / ダーク */
+  --dark-bg:#142322; --dark-surface:#20302E; --dark-text:#ECE6D2;
+  --dark-text-secondary:#9FBDB8; --dark-text-muted:#7E9F99; --dark-primary:#6BB5B0; --gold-on-dark:#E8C56A;
+
+  /* 操作系の枠・面（案B）*/
+  --border-control:#9DB7B5; --surface-control-sunken:#F6FAF8;
+  /* 昇格トークン（パレットを閉じる）*/
+  --text-strong:#234E4D; --gold-text-strong:#6B470C; --gold-badge-fill:#F1D89B; --gold-border-muted:#AC9159; --ink-teal:#183330; --dark-border:#0c1817; --dark-raised:#2A3A35; --dark-primary-hover:#8ECBC5; --gold-moon:#F3E6BD;
+
+  /* 影（やわらかく・墨に寄せた色） */
+  --shadow-sm:0 1px 2px rgba(27,42,43,.06);
+  --shadow:0 1px 2px rgba(27,42,43,.05), 0 10px 24px -14px rgba(27,42,43,.22);
+  --shadow-lg:0 2px 6px rgba(27,42,43,.06), 0 20px 48px -22px rgba(27,42,43,.30);
+  --shadow-hover:0 1px 2px rgba(27,42,43,.08), 0 4px 12px -3px rgba(27,42,43,.18);
+
+  /* 角丸 */
+  --r-xs:5px; --r-sm:8px; --r-md:11px; --r-lg:18px; --r-pill:9999px;
+  /* 余白（base 8） */
+  --s-xxs:4px; --s-xs:8px; --s-sm:12px; --s-md:16px; --s-lg:24px; --s-xl:32px; --s-xxl:48px; --s-section:72px;
+
+  /* フォント3系統（DESIGN.md 準拠） */
+  --font-serif:"Cormorant Garamond","Shippori Mincho",Georgia,"Times New Roman",serif;
+  --font-ui:"Inter","Noto Sans JP","system-ui","-apple-system","Segoe UI",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:var(--font-ui); font-size:14px; line-height:1.6; letter-spacing:normal;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+
+/* ---- タイポ階段（見出し=セリフ/明朝 weight500・負トラッキング / 本文=サンセリフ） ---- */
+.t-hero{font-family:var(--font-serif);font-size:28px;font-weight:600;line-height:1.25;letter-spacing:-0.3px;}
+.t-display{font-family:var(--font-serif);font-size:22px;font-weight:600;line-height:1.3;letter-spacing:-0.2px;}
+.t-display-md{font-family:var(--font-serif);font-size:18px;font-weight:600;line-height:1.4;letter-spacing:-0.1px;}
+.t-lead{font-family:var(--font-ui);font-size:16px;font-weight:400;line-height:1.55;color:var(--text-secondary);}
+.t-tagline{font-family:var(--font-ui);font-size:15px;font-weight:500;line-height:1.4;}
+.t-body-strong{font-family:var(--font-ui);font-size:14px;font-weight:600;line-height:1.5;letter-spacing:.02em;color:var(--text-strong);}
+.t-body{font-family:var(--font-ui);font-size:14px;font-weight:400;line-height:1.75;}
+.t-caption{font-family:var(--font-ui);font-size:13px;font-weight:400;line-height:1.65;color:var(--text-secondary);}
+.t-caption-strong{font-family:var(--font-ui);font-size:13px;font-weight:600;line-height:1.4;letter-spacing:.02em;color:var(--text-strong);}
+.t-fine{font-family:var(--font-ui);font-size:12px;font-weight:400;line-height:1.5;color:var(--text-secondary);} /* 12px は AA 確保のため secondary（muted は<18pxで4.4:1=AA未達） */
+.muted{color:var(--text-muted);} .secondary{color:var(--text-secondary);}
+code{font-family:var(--font-mono);font-size:0.92em;background:var(--surface-sunken);border:1px solid var(--border);border-radius:var(--r-xs);padding:1px 5px;}
+.dark-zone code,.feature-night code{background:rgba(236,230,210,.10);border-color:rgba(236,230,210,.20);color:var(--dark-text);} /* 暗い面では code チップも暗く（白い箱が浮かないように） */
+
+/* =================== ヘッダー（明るい面・最上部固定） =================== */
+header.site{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; gap:var(--s-lg);
+  background:var(--bg); color:var(--text);
+  height:56px; padding:0 var(--s-xl);
+}
+header.site .logo{font-family:var(--font-serif);font-weight:700;font-size:21px;letter-spacing:.2px;color:var(--gold-text);cursor:pointer;transition:color .25s ease,opacity .25s ease;}
+header.site .logo:hover{color:var(--gold-text-strong);} /* ロゴ: ホバーで一段濃い金 */
+header.site nav{display:flex;gap:var(--s-lg);}
+header.site nav a{color:var(--text-secondary);font-size:14px;font-weight:500;text-decoration:none;} /* ナビ: ホバー装飾なし（色変化もアニメもなし） */
+header.site .spacer{flex:1;}
+header.site .meta{color:var(--text-muted);font-size:12px;}
+header.site .cta{background:var(--primary);color:var(--on-primary);border:0;border-radius:var(--r-pill);
+  padding:8px 18px;font-size:14px;font-weight:500;line-height:1.2;font-family:var(--font-ui);cursor:pointer;box-shadow:var(--shadow-sm);
+  display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;flex:0 0 auto;
+  transition:transform .18s ease,background .32s ease,color .32s ease,box-shadow .32s ease;}
+header.site .cta:hover{box-shadow:var(--shadow-hover);transform:translateY(-1px);} /* 新規も色は変えず濃いめの影＋浮き */
+header.site .cta:active{transform:scale(.97);}
+@media(max-width:680px){header.site nav,header.site .meta{display:none;}}
+
+/* =================== レイアウト =================== */
+.wrap{max-width:1080px;margin:0 auto;padding:0 var(--s-xl);}
+section.block{padding:var(--s-section) 0 var(--s-xl);border-top:1px solid var(--border);}
+section.block:first-of-type{border-top:0;}
+.eyebrow{font-family:var(--font-ui);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary);margin:0 0 var(--s-sm);}
+.section-h{margin:0 0 var(--s-xs);}
+.section-sub{margin:0 0 var(--s-xl);max-width:64ch;}
+.grid{display:grid;gap:var(--s-lg);}
+.cols-2{grid-template-columns:repeat(2,1fr);}
+.cols-3{grid-template-columns:repeat(3,1fr);}
+.row{display:flex;flex-wrap:wrap;gap:var(--s-md);align-items:center;}
+.stack{display:flex;flex-direction:column;gap:var(--s-md);}
+@media(max-width:820px){.cols-2,.cols-3{grid-template-columns:1fr;} .wrap{padding:0 var(--s-lg);}}
+
+/* =================== ボタン（UIサンセリフ・line-height1・flex中央） =================== */
+button.ui{appearance:none;font-family:var(--font-ui);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1.2;white-space:nowrap;flex:0 0 auto;transition:transform .18s ease,background .32s ease,color .32s ease,box-shadow .32s ease,border-color .32s ease;}
+button.ui:active{transform:scale(.97);}
+.btn-primary{background:var(--primary);color:var(--on-primary);border:0;border-radius:var(--r-pill);
+  font-size:14px;font-weight:500;padding:9px 22px;box-shadow:var(--shadow-sm);}
+.btn-primary:hover{box-shadow:var(--shadow-hover);transform:translateY(-1px);} /* ホバー: 色は変えず濃いめの影＋浮き */
+.btn-ghost{background:transparent;color:var(--primary);border:1px solid var(--primary);border-radius:var(--r-pill);
+  font-size:14px;font-weight:500;padding:8px 21px;}
+.btn-ghost:hover{box-shadow:var(--shadow-hover);transform:translateY(-1px);} /* 浮かせるだけ（縁・文字は据え置き・濃いめの影） */
+.btn-utility{background:var(--ink-teal);color:var(--on-primary);border:0;border-radius:var(--r-sm);
+  font-size:13px;font-weight:500;padding:8px 16px;} /* 墨をもう少しティール寄りに */
+.btn-utility:hover{box-shadow:var(--shadow-hover);transform:translateY(-1px);} /* 影の出し方は他ボタンと一緒（浮き＋影） */
+.link{color:var(--primary);text-decoration:none;font-weight:500;white-space:nowrap;} /* テキストリンクは濃いゴールド */
+.link .arw{display:inline-block;transition:transform .3s cubic-bezier(.4,0,.2,1);}
+.link:hover .arw{transform:translateX(4px);} /* ホバーは矢印スライドのみ・下線なし */
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
+.icon-btn{width:38px;height:38px;flex:0 0 auto;border-radius:var(--r-pill);border:1px solid var(--border-control);background:var(--surface);color:var(--text);display:inline-flex;align-items:center;justify-content:center;line-height:1;font-size:18px;box-shadow:var(--shadow-sm);transition:box-shadow .25s ease;}
+.icon-btn:hover{box-shadow:0 1px 6px rgba(27,42,43,.18);} /* ホバー: 下寄りを抑えた・絞った・ゴールド寄りの影 */
+
+/* =================== カード・面（影あり） =================== */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s-lg);box-shadow:var(--shadow);transition:box-shadow .35s ease,transform .35s ease;}
+.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);} /* ホバーで持ち上げる */
+.card.ink{border-color:var(--gold-border-muted);box-shadow:var(--shadow-lg);} /* 強調カードの枠は彩度を落とした muted ゴールド */
+.card .thumb{aspect-ratio:4/3;border-radius:var(--r-sm);background:var(--surface-sunken);border:1px solid var(--border);
+  display:grid;place-items:center;color:var(--text-muted);margin-bottom:var(--s-md);font-family:var(--font-mono);font-size:12px;}
+.price{font-weight:600;letter-spacing:.02em;}
+
+/* 入力 */
+.field label{display:block;margin-bottom:var(--s-xs);}
+.input{width:100%;background:var(--surface);color:var(--text);border:1px solid var(--border-control);border-radius:var(--r-md);
+  font-family:var(--font-ui);font-size:14px;padding:9px 14px;box-shadow:var(--shadow-sm);transition:border-color .3s ease,box-shadow .3s ease;}
+.input::placeholder{color:var(--text-muted);}
+.input:focus{outline:none;border-color:var(--primary);box-shadow:0 2px 12px -5px rgba(47,110,112,.28);} /* 入力(持ち上げ面): 薄いgold縁＋軽い影 */
+.search:focus-within{outline:none;border-color:var(--primary);} /* 検索(沈み面): 薄いgold縁のみ・影なし */
+.search{display:flex;align-items:center;gap:var(--s-xs);background:var(--surface-control-sunken);border:1px solid var(--border-control);
+  border-radius:var(--r-pill);padding:9px 14px;transition:border-color .3s ease,box-shadow .3s ease;} /* テキスト入力と完全に同じpadding */
+.search .s-ic{display:inline-flex;align-items:center;color:var(--text-muted);}
+.search input{flex:1;background:transparent;border:0;outline:0;margin:0;padding:0;font-family:var(--font-ui);font-size:14px;line-height:1;color:var(--text);}
+
+/* =================== バッジ／状態 =================== */
+.badge{display:inline-flex;align-items:center;justify-content:center;line-height:1.2;white-space:nowrap;flex:0 0 auto;gap:6px;border-radius:var(--r-pill);padding:5px 11px;font-size:12px;font-weight:600;letter-spacing:.02em;font-family:var(--font-ui);}
+.badge .ic{font-weight:700;}
+.gold-badge{background:var(--gold-badge-fill);color:var(--gold-text-strong);} /* 濃いめのゴールド地＋一段濃い文字でAA確保 */
+
+/* スウォッチ */
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s-md);}
+.swatch{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;background:var(--surface);box-shadow:var(--shadow-sm);}
+.swatch .chip{height:60px;}
+.swatch .meta{padding:7px 10px;}
+.swatch .meta .n{font-family:var(--font-mono);font-size:12px;font-weight:500;}
+.swatch .meta .h{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);}
+
+/* =================== 暗い面（夜・光）＝トースト/強調カード/ダークモードのみ =================== */
+.dark-zone{background:var(--dark-bg);color:var(--dark-text);border-radius:var(--r-lg);padding:var(--s-xl);border:1px solid var(--dark-border);box-shadow:var(--shadow-lg);}
+.dark-zone .secondary{color:var(--dark-text-secondary);}
+.dark-zone .link{color:var(--dark-primary);}
+.feature-night{
+  position:relative;overflow:hidden;background:var(--dark-bg);color:var(--dark-text);
+  border-radius:var(--r-lg);padding:var(--s-xl);
+  border:1px solid var(--dark-border);
+  box-shadow:var(--shadow-lg), 0 0 70px -18px rgba(232,197,106,.30);
+}
+.feature-night::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 80% at 78% -10%, rgba(232,197,106,.18), rgba(232,197,106,0) 55%);}
+.feature-night > *{position:relative;}
+.feature-night .secondary{color:var(--dark-text-muted);}
+.moon{position:absolute;top:24px;right:34px;width:42px;height:42px;border-radius:var(--r-pill);
+  background:var(--gold-moon);box-shadow:0 0 38px 6px rgba(232,197,106,.55);}
+.kicker-gold{font-family:var(--font-ui);color:var(--gold-on-dark);text-shadow:0 0 14px rgba(232,197,106,.4);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;font-size:12px;}
+.btn-on-dark{background:var(--dark-primary);color:var(--dark-bg);border:0;border-radius:var(--r-pill);font-size:14px;font-weight:500;padding:9px 22px;}
+.btn-on-dark:hover{background:var(--dark-primary-hover);} /* ホバーで明度を上げる */
+
+/* トースト */
+.toast{display:inline-flex;align-items:center;gap:var(--s-sm);background:var(--dark-raised);color:var(--dark-text);
+  border-radius:var(--r-md);padding:11px 16px;border:1px solid rgba(236,230,210,.1);
+  box-shadow:var(--shadow-lg), 0 0 40px -16px rgba(232,197,106,.4);}
+.toast .ic{color:var(--gold-on-dark);text-shadow:0 0 12px rgba(232,197,106,.5);font-size:16px;line-height:1;}
+
+.note-warn{border-left:3px solid var(--gold-deco);background:#FAEED9;border-radius:0 var(--r-md) var(--r-md) 0;padding:var(--s-md) var(--s-lg);color:var(--gold-text);}
+footer.foot{background:var(--surface-sunken);border-top:1px solid var(--border);padding:var(--s-xl) 0;color:var(--text-muted);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <span class="logo">Tomoshibi</span>
+  <nav>
+    <a href="#">ノート</a>
+    <a href="#">タイマー</a>
+    <a href="#">レポート</a>
+  </nav>
+  <span class="spacer"></span>
+  <span class="meta">Design Gallery · Ver.1</span>
+  <button class="cta">新規</button>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="block">
+    <p class="eyebrow">Tomoshibi ／ teal-and-gold storybook on warm off-white</p>
+    <h1 class="t-hero" style="max-width:20ch;margin:0 0 var(--s-sm)">静けさの中で、仕事に灯をともす。</h1>
+    <p class="t-lead" style="max-width:46ch;margin:0 0 var(--s-lg)">広い余白・低彩度の昼地・水面のティール一色のアクション。暗い面の上だけで、ゴールドが月光のように灯る。</p>
+    <div class="row">
+      <button class="ui btn-primary">はじめる</button>
+      <button class="ui btn-ghost">詳しく見る</button>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="block">
+    <p class="eyebrow">Typography</p>
+    <h2 class="t-display section-h">タイポグラフィ</h2>
+    <p class="t-body section-sub secondary">見出しはセリフ/明朝（Cormorant Garamond ＋ Shippori Mincho）で編集的に。本文・UI はサンセリフ（Inter ＋ Noto Sans JP）。コードは JetBrains Mono。サイズはユーティリティ標準に圧縮（本文 14px）。</p>
+    <div class="stack">
+      <div><span class="t-fine muted">hero / serif 28</span><div class="t-hero">灯をともす — Tomoshibi</div></div>
+      <div><span class="t-fine muted">display / serif 22</span><div class="t-display">静かな前進 Quiet progress</div></div>
+      <div><span class="t-fine muted">subhead / serif 18</span><div class="t-display-md">夜の都市と月</div></div>
+      <div><span class="t-fine muted">body / sans 14</span><div class="t-body" style="max-width:62ch">本文はサンセリフ 14px・行間 1.6。読むためのリズムを保ちつつ、ユーティリティアプリらしく密度を上げる。リンクは<a class="link" href="#">水面のティール</a>、コードは <code>--primary</code> のように <code>JetBrains&nbsp;Mono</code> で。</div></div>
+      <div><span class="t-fine muted">caption / sans 13</span><div class="t-caption">補助キャプション・メタ情報</div></div>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section class="block">
+    <p class="eyebrow">Buttons & Actions</p>
+    <h2 class="t-display section-h">ボタン</h2>
+    <p class="t-body section-sub secondary">インタラクティブは全て水面のティール一色。ピル＝主アクション、ゴースト＝第2、角丸小の墨ボタン＝ユーティリティ。文字は高さ揃えで縦中央。</p>
+    <div class="row">
+      <button class="ui btn-primary">主アクション</button>
+      <button class="ui btn-ghost">第2アクション</button>
+      <button class="ui btn-utility">サインイン</button>
+      <a class="link" href="#">テキストリンク <span class="arw">→</span></a>
+      <span class="icon-btn" title="アイコンボタン">＋</span>
+      <span class="badge gold-badge">NEW</span>
+      <span class=”t-fine muted”>← ゴールドはワードマーク・状態・暗面の光のみ（操作には使わない）</span>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="block">
+    <p class="eyebrow">Cards</p>
+    <h2 class="t-display section-h">カード</h2>
+    <p class="t-body section-sub secondary">面は生成りの持ち上げ、境界は墨線のヘアライン＋柔らかい影。強調したい一枚だけ墨線を強め、影を深くする。</p>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="thumb">image 4:3</div>
+        <div class="t-body-strong">ミニノート</div>
+        <div class="t-caption" style="margin:6px 0 14px">自然文の長期記憶</div>
+        <a class="link t-body" href="#">開く <span class="arw">→</span></a>
+      </div>
+      <div class="card">
+        <div class="thumb">image 4:3</div>
+        <div class="t-body-strong">タイマー</div>
+        <div class="price t-body" style="margin:6px 0 14px">実働 02:14:00</div>
+        <a class="link t-body" href="#">続ける <span class="arw">→</span></a>
+      </div>
+      <div class="card ink">
+        <span class="badge gold-badge" style="margin-bottom:10px">注目</span>
+        <div class="t-body-strong">強調カード</div>
+        <div class="t-caption" style="margin:6px 0 14px">墨線＋深い影で1枚だけ前に出す</div>
+        <a class="link t-body" href="#">詳細 <span class="arw">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INPUTS -->
+  <section class="block">
+    <p class="eyebrow">Inputs</p>
+    <h2 class="t-display section-h">入力</h2>
+    <div class="grid cols-2" style="max-width:760px">
+      <div class="field">
+        <label class="t-caption-strong">テキスト入力</label>
+        <input class="input" placeholder="タスク名を入力…" />
+      </div>
+      <div class="field">
+        <label class="t-caption-strong">検索</label>
+        <div class="search"><span class="s-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><input placeholder="検索…" /></div>
+      </div>
+    </div>
+    <p class="t-fine" style="margin-top:var(--s-md)">テキスト入力はフォーカス時だけ金縁（<code>--gold-deco</code>）。検索はくぼみ面 <code>--surface-sunken</code>。</p>
+  </section>
+
+  <!-- STATUS（Ver.1＝色相で区別） -->
+  <section class="block">
+    <p class="eyebrow">Work Status — 仕事の状態</p>
+    <h2 class="t-display section-h">状態の符号化（色相で区別）</h2>
+    <p class="t-body section-sub secondary">6状態を固有の色相で一目区別する。塗りは淡い地、文字は同系の濃い色。色覚配慮でアイコン併用を推奨。</p>
+    <div class="row" id="status-v1"></div>
+    <p class="t-fine" style="margin-top:var(--s-md)">派生色は2色まで（テラコッタ・インディゴ）。これ以上足すと画像の調和が崩れる。</p>
+  </section>
+
+  <!-- DARK SURFACES -->
+  <section class="block">
+    <p class="eyebrow">Dark Surfaces — 暗い面と光</p>
+    <h2 class="t-display section-h">夜の面、ゴールドの灯</h2>
+    <p class="t-body section-sub secondary">明るい金 <code>#E8C56A</code> の本来の出番。暗い面は<strong>通知トースト・強調カード・ダークモード</strong>だけ（通常のヘッダーは明るいまま）。その上でゴールドが月光のように発光し、影と合わせて立体感をつくる。</p>
+
+    <div class="grid cols-2">
+      <div class="feature-night">
+        <div class="moon" aria-hidden="true"></div>
+        <p class="kicker-gold">Featured</p>
+        <h3 class="t-display" style="margin:6px 0 8px;color:var(--dark-text)">夜の都市</h3>
+        <p class="t-body secondary" style="max-width:36ch;margin:0 0 var(--s-lg)">深いティールの闇に、月と街灯のゴールドが灯る。影と発光で前に持ち上げる。</p>
+        <button class="ui btn-on-dark">物語を読む</button>
+      </div>
+
+      <div class="dark-zone">
+        <p class="t-caption-strong" style="margin:0 0 var(--s-md);color:var(--dark-text)">通知トースト</p>
+        <div class="toast" style="margin-bottom:var(--s-lg)">
+          <span class="ic">✓</span>
+          <span class="t-body" style="color:var(--dark-text)">保存しました</span>
+          <a class="link t-body" href="#">取り消す</a>
+        </div>
+        <p class="t-caption secondary" style="margin:0 0 var(--s-sm)">暗い面のテキスト＝<code>#ECE6D2</code>、リンク＝明るいティール <code>#6BB5B0</code>、灯＝ゴールド <code>#E8C56A</code>。</p>
+        <div class="row">
+          <span class="badge" style="background:rgba(232,197,106,.16);color:var(--gold-on-dark)">! 要対応</span>
+          <span class="badge" style="background:rgba(107,181,176,.16);color:var(--dark-primary)">◐ 進行中</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PALETTE -->
+  <section class="block">
+    <p class="eyebrow">Palette</p>
+    <h2 class="t-display section-h">配色</h2>
+    <p class="t-body section-sub secondary">背景・文字・ティール・ゴールド3分割・暗い面に、Ver.1 は派生2色（テラコッタ／インディゴ）を加えて状態を色相で区別する。</p>
+
+    <h3 class="t-caption-strong" style="margin:0 0 var(--s-sm)">基本（ライト）</h3>
+    <div class="swatches" id="sw-base" style="margin-bottom:var(--s-lg)"></div>
+    <h3 class="t-caption-strong" style="margin:0 0 var(--s-sm)">ゴールド3分割 — 置く場所の明度で使い分ける</h3>
+    <div class="swatches" id="sw-gold" style="margin-bottom:var(--s-lg)"></div>
+    <h3 class="t-caption-strong" style="margin:0 0 var(--s-sm)">派生2色（Ver.1）</h3>
+    <div class="swatches" id="sw-derived" style="margin-bottom:var(--s-lg)"></div>
+    <h3 class="t-caption-strong" style="margin:0 0 var(--s-sm)">暗い面・ダーク</h3>
+    <div class="swatches" id="sw-dark" style="margin-bottom:var(--s-lg)"></div>
+    <h3 class="t-caption-strong" style="margin:0 0 var(--s-sm)">昇格トークン</h3>
+    <div class="swatches" id="sw-promoted"></div>
+  </section>
+
+</div>
+
+<footer class="foot">
+  <div class="wrap t-fine">
+    フォント: 見出し=Cormorant Garamond＋Shippori Mincho（明朝）／ 本文・UI=Inter＋Noto Sans JP ／ コード=JetBrains Mono　·　角丸: 5/8/11/18/pill　·　立体感: 柔らかい影＋暗い面のゴールド発光。<br>
+    純白 #FFFFFF は使わない（温かいオフホワイト #FDFCF8）。操作は全てティール（リンク・ナビ含む）。ゴールドはワードマーク/状態/暗面の光のみ。ヘッダーは地と一体（区切り線なし）。
+  </div>
+</footer>
+
+<script>
+function sw(name, hex, note){
+  return `<div class="swatch"><div class="chip" style="background:${hex}"></div>
+    <div class="meta"><div class="n">${name}</div><div class="h">${hex}${note?' · '+note:''}</div></div></div>`;
+}
+document.getElementById('sw-base').innerHTML = [
+  sw('--bg','#FDFCF8','背景'), sw('--surface','#FFFFFC','面'), sw('--surface-sunken','#F2EBD9','くぼみ'),
+  sw('--text','#1B2A2B','主役/墨'), sw('--text-secondary','#4A6968'), sw('--text-muted','#5A7D7B'),
+  sw('--primary','#2F6E70','操作'), sw('--primary-hover','#265A5C'),
+  sw('--border','#D8CFB6'), sw('--border-strong','#5A7D7B','墨線'),
+  sw('--border-control','#9DB7B5','操作枠'), sw('--surface-control-sunken','#F6FAF8','検索の沈み面'),
+].join('');
+document.getElementById('sw-gold').innerHTML = [
+  sw('--gold-text','#8A5E12','ワードマーク/状態（リンク不可）'), sw('--gold-fill','#E8C56A','塗り/暗面で発光'), sw('--gold-deco','#B8862F','装飾のみ'),
+].join('');
+document.getElementById('sw-derived').innerHTML = [
+  sw('--terracotta','#A8472B','警告/超過'), sw('--terracotta-fill','#F6E2DA'),
+  sw('--indigo','#34466E','保留/情報'), sw('--indigo-fill','#E2E6F2'),
+].join('');
+document.getElementById('sw-dark').innerHTML = [
+  sw('--dark-bg','#142322'), sw('--dark-surface','#20302E'), sw('--dark-text','#ECE6D2'),
+  sw('--dark-text-secondary','#9FBDB8'), sw('--dark-primary','#6BB5B0','明ティール'), sw('--gold-on-dark','#E8C56A','光る金'),
+].join('');
+document.getElementById('sw-promoted').innerHTML = [
+  sw('--text-strong','#234E4D','濃ティールの強調文字'), sw('--gold-text-strong','#6B470C'),
+  sw('--gold-badge-fill','#F1D89B'), sw('--gold-border-muted','#AC9159'),
+  sw('--ink-teal','#183330'), sw('--dark-raised','#2A3A35'),
+  sw('--dark-primary-hover','#8ECBC5'), sw('--gold-moon','#F3E6BD'),
+  sw('--dark-border','#0c1817'),
+].join('');
+
+function badge(icon, label, fill, color){
+  return `<span class="badge" style="background:${fill};color:${color}"><span class="ic">${icon}</span>${label}</span>`;
+}
+document.getElementById('status-v1').innerHTML = [
+  badge('○','未着手','#E5E7E1','#445250'),
+  badge('◐','進行中','#DCEAE9','#2F6E70'),
+  badge('⏸','保留','#E2E6F2','#34466E'),
+  badge('!','要対応','#FAEED9','#8A5E12'),
+  badge('⚠','期限超過','#F6E2DA','#A8472B'),
+  badge('✓','完了','#E8EDE9','#4A6968'),
+].join('');
+</script>
+</body>
+</html>

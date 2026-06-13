@@ -23,13 +23,67 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --color-overlay: var(--overlay);
+
+  /* 角丸は設計の rounded スケールに固定（単一スカラ計算から切替）。DESIGN-ver1.md sm8/md11/lg18 */
+  --radius-sm: 8px;
+  --radius-md: 11px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  /* ── Ver.1 デザイン固有トークン（Tailwind ユーティリティ公開） ── */
+  --color-gold-text: var(--gold-text);
+  --color-gold-fill: var(--gold-fill);
+  --color-gold-deco: var(--gold-deco);
+  --color-gold-on-dark: var(--gold-on-dark);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-fill: var(--terracotta-fill);
+  --color-indigo: var(--indigo);
+  --color-indigo-fill: var(--indigo-fill);
+
+  /* 文字・面・ボーダー系 */
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-strong: var(--text-strong);
+  --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--on-primary);
+  --color-border-strong: var(--border-strong);
+  --color-surface-sunken: var(--surface-sunken);
+
+  /* ── Ver.2 追加トークン（操作系・昇格） ── */
+  --color-border-control: var(--border-control);
+  --color-surface-control-sunken: var(--surface-control-sunken);
+  --color-ink-teal: var(--ink-teal);
+  --color-gold-text-strong: var(--gold-text-strong);
+  --color-gold-badge-fill: var(--gold-badge-fill);
+  --color-gold-border-muted: var(--gold-border-muted);
+  --color-gold-moon: var(--gold-moon);
+  --color-dark-border: var(--dark-border);
+  --color-dark-raised: var(--dark-raised);
+  --color-dark-primary-hover: var(--dark-primary-hover);
+
+  /* 状態色 */
+  --color-st-todo-fill: var(--st-todo-fill);
+  --color-st-todo-text: var(--st-todo-text);
+  --color-st-doing-fill: var(--st-doing-fill);
+  --color-st-doing-text: var(--st-doing-text);
+  --color-st-hold-fill: var(--st-hold-fill);
+  --color-st-hold-text: var(--st-hold-text);
+  --color-st-action-fill: var(--st-action-fill);
+  --color-st-action-text: var(--st-action-text);
+  --color-st-over-fill: var(--st-over-fill);
+  --color-st-over-text: var(--st-over-text);
+  --color-st-done-fill: var(--st-done-fill);
+  --color-st-done-text: var(--st-done-text);
+
+  /* フォント（Tailwind font-sans / font-serif / font-mono ユーティリティに公開） */
+  --font-sans: var(--font-ui);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
 }
 
 @layer base {
@@ -38,5 +92,11 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-ui);
+    /*
+     * 見出し（h1–h3）へのセリフ適用は Tailwind ユーティリティ（font-serif）で個別指定する方針。
+     * グローバルに h* { font-family: var(--font-serif) } を当てるとコンポーネントの意図を上書きするため、
+     * ここでは当てない。コンポーネント側で class="font-serif" を明示する。
+     */
   }
 }

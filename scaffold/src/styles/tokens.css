@@ -1,48 +1,175 @@
 /*
  * デザイントークン（唯一の置き場）。テーマ差し替えはこのファイルの値変更で完結する。
- * 現在の値は仮デフォルト（shadcn/ui neutral）。デザイン言語の確定時にここを差し替える。
+ * デザイン言語確定: Tomoshibi Ver.1（識別性優先）。出典 design/gallery.html の :root。
  * Tailwind ユーティリティへのマッピング（構造）は src/index.css の @theme inline が持つ。
  */
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  /* ── shadcn コアトークン ── */
+  --radius: 0.6875rem; /* md(11px) を既定値として保持。角丸スケールは index.css @theme inline で固定値指定 */
+
+  --background: #FDFCF8;
+  --foreground: #1B2A2B;
+
+  --card: #FFFFFC;
+  --card-foreground: #1B2A2B;
+
+  --popover: #FFFFFC;
+  --popover-foreground: #1B2A2B;
+
+  --primary: #2F6E70;
+  --primary-foreground: #FAF6EC;
+
+  --secondary: #F2EBD9;
+  --secondary-foreground: #1B2A2B;
+
+  --muted: #F2EBD9;
+  --muted-foreground: #4A6968;
+
+  --accent: #DCEAE9;
+  --accent-foreground: #2F6E70;
+
+  --destructive: #A8472B;
+  --destructive-foreground: #FAF6EC; /* #A8472B 上で 5.4:1 AA */
+
+  --border: #D8CFB6;
+  --input: #9DB7B5; /* v2: 入力/コントロールの枠はティール寄りに（= --border-control） */
+  --ring: #2F6E70;
+
+  --overlay: rgba(0,0,0,0.50);
+
+  /* ── デザイン固有トークン（Ver.1 追加） ── */
+
+  /* 文字・ボーダー系 */
+  --text-secondary: #4A6968; /* 意味的に独立した語彙のため var() 連鎖にしない（将来乖離の可能性あり） */
+  --text-muted: #5A7D7B; /* ヒント・補助。18px以上(または14px太字以上)でのみ使用 */
+  --text-strong: #234E4D; /* t-body-strong / t-caption-strong の色（v2: 濃ティール強調文字） */
+  --primary-hover: #265A5C;
+  --on-primary: #FAF6EC;
+  --border-strong: #5A7D7B;
+  --surface-sunken: #F2EBD9; /* 意味的に独立した語彙のため var() 連鎖にしない（将来乖離の可能性あり） */
+
+  /* ゴールド3分割 */
+  --gold-text: #8A5E12;
+  --gold-fill: #E8C56A;
+  --gold-deco: #B8862F;
+
+  /* 派生2色（Ver.1） */
+  --terracotta: #A8472B;
+  --terracotta-fill: #F6E2DA;
+  --indigo: #34466E;
+  --indigo-fill: #E2E6F2;
+
+  /* 操作系の枠・面（v2 追加） */
+  --border-control: #9DB7B5;
+  --surface-control-sunken: #F6FAF8;
+
+  /* 昇格トークン（v2 追加・パレットを閉じる） */
+  --gold-text-strong: #6B470C;
+  --gold-badge-fill: #F1D89B;
+  --gold-border-muted: #AC9159;
+  --ink-teal: #183330;
+  --dark-border: #0c1817;
+  --dark-raised: #2A3A35;
+  --dark-primary-hover: #8ECBC5;
+  --gold-moon: #F3E6BD;
+
+  /* 暗い面 / ダーク（固定値・ライト面でも参照可） */
+  --dark-bg: #142322;
+  --dark-surface: #20302E;
+  --dark-text: #ECE6D2;
+  --dark-text-secondary: #9FBDB8;
+  --dark-text-muted: #7E9F99;
+  --dark-primary: #6BB5B0;
+  --gold-on-dark: #E8C56A;
+
+  /* 影（やわらかく・墨に寄せた色） */
+  --shadow-sm: 0 1px 2px rgba(27,42,43,.06);
+  --shadow: 0 1px 2px rgba(27,42,43,.05), 0 10px 24px -14px rgba(27,42,43,.22);
+  --shadow-lg: 0 2px 6px rgba(27,42,43,.06), 0 20px 48px -22px rgba(27,42,43,.30);
+  --shadow-hover: 0 1px 2px rgba(27,42,43,.08), 0 4px 12px -3px rgba(27,42,43,.18);
+
+  /* フォント3系統（DESIGN.md 準拠） */
+  --font-serif: "Cormorant Garamond","Shippori Mincho",Georgia,"Times New Roman",serif;
+  --font-ui: "Inter","Noto Sans JP","system-ui","-apple-system","Segoe UI",sans-serif;
+  --font-mono: "JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+
+  /* 状態色 — 6状態 (fill / text) */
+  --st-todo-fill: #E5E7E1;
+  --st-todo-text: #445250;
+
+  --st-doing-fill: #DCEAE9;
+  --st-doing-text: #2F6E70;
+
+  --st-hold-fill: #E2E6F2;
+  --st-hold-text: #34466E;
+
+  --st-action-fill: #FAEED9;
+  --st-action-text: #8A5E12;
+
+  --st-over-fill: #F6E2DA;
+  --st-over-text: #A8472B;
+
+  --st-done-fill: #E8EDE9;
+  --st-done-text: #4A6968;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  /* ── shadcn コアトークン（ダーク） ── */
+  --background: #142322;
+  --foreground: #ECE6D2;
+
+  --card: #20302E;
+  --card-foreground: #ECE6D2;
+
+  --popover: #20302E;
+  --popover-foreground: #ECE6D2;
+
+  --primary: #6BB5B0;
+  --primary-foreground: #142322;
+
+  --secondary: #20302E;
+  --secondary-foreground: #ECE6D2;
+
+  --muted: #20302E;
+  --muted-foreground: #9FBDB8;
+
+  --accent: #20302E;
+  --accent-foreground: #ECE6D2;
+
+  --destructive: #E3906F;
+  --destructive-foreground: #142322; /* #E3906F 上で 6.6:1 AA */
+
+  --border: #2E3F3D;
+  --input: #2E3F3D;
+  --ring: #6BB5B0;
+
+  --overlay: rgba(0,0,0,0.70);
+
+  /* ── デザイン固有トークン（ダーク上書き） ── */
+  --gold-fill: #E8C56A;
+  --surface-sunken: #20302E; /* 暗い沈み面を dark-surface に統一 */
+  --text-secondary: #9FBDB8;
+  --text-muted: #9FBDB8; /* dark-text-secondary と揃える */
+  --terracotta: #E3906F;
+  --indigo: #9AABDB;
+
+  /*
+   * ダーク面では状態バッジは明るいチップとして浮かせ、テキストは :root 濃色を継承（fill は据置）。
+   * --st-*-text はダーク上書きしない。:root の濃色（#2F6E70/#34466E/#8A5E12/#A8472B/#4A6968）が
+   * 各 fill 上で AA 合格のため、削除して継承させる。
+   */
+  /* 状態バッジ fill のみダーク据置（テキストは :root 継承） */
+  --st-todo-fill: #E5E7E1;
+  --st-todo-text: #445250;
+
+  --st-doing-fill: #DCEAE9;
+
+  --st-hold-fill: #E2E6F2;
+
+  --st-action-fill: #FAEED9;
+
+  --st-over-fill: #F6E2DA;
+
+  --st-done-fill: #E8EDE9;
 }
