@@ -4,12 +4,48 @@
 
 ## 始め方
 
-1. このリポジトリをテンプレートとして新規プロジェクトを作る（GitHub の "Use this template"、または clone 後に `.git` を作り直す）。
+### A. ローカル Node スクリプト（推奨）
+
+このリポを clone してから `tools/new-project.mjs` を使うと、クリーンな新プロジェクトをワンコマンドで生成できる。
+
+```bash
+# テンプレを clone（初回のみ）
+git clone https://github.com/shugorun/vibe-coding-starter
+cd vibe-coding-starter
+
+# 新プロジェクトを生成（親ディレクトリと同階層に <myapp>/ が作られる）
+node tools/new-project.mjs myapp
+
+# オプション例: 場所・著者・npm install を同時に指定
+node tools/new-project.mjs myapp --to C:\Users\me\projects --author "Taro Yamada" --install
+```
+
+オプション:
+
+| オプション | 説明 | 既定 |
+|---|---|---|
+| `--to <dir>` | 新プロジェクトを置く親ディレクトリ | テンプレリポの親ディレクトリ |
+| `--author "<name>"` | `LICENSE` の著作権者を書き換え | スキップ（手動で書き換える） |
+| `--install` | 生成後に `scaffold/` で `npm install` を実行 | OFF |
+
+生成されるプロジェクトには `.git`・`node_modules`・ビルド成果物・`*.log` は含まれない。生成スクリプト自身（`tools/new-project.mjs`）も除外されるため、配布物はクリーンな初期状態になる。
+
+生成後の手順（スクリプトが完了時に表示する内容と同じ）:
+
+1. `cd <生成先>`
+2. Claude Code でフォルダを開く
+3. `.claude/` のフックの信頼確認を承認する
+4. `/catchup-project` を実行して現在地を復元する
+5. （`--install` を指定しなかった場合）`cd scaffold && npm install`
+
+### B. GitHub テンプレート / clone から手動セットアップ（代替）
+
+1. GitHub の "Use this template" で新リポを作成（または clone 後に `.git` を削除して `git init`）。
 2. Claude Code で開き、`.claude/` のフックの信頼確認を承認する。
 3. `/catchup-project` を実行し、作りたいものを自然文で送る。
-4. `LICENSE` の著作権者を自分の名前に書き換える（既定は MIT）。
+4. `LICENSE` の著作権者を自分の名前に書き換える（`--author` オプションを使えば手順 A で自動化できる）。
 
-権限の既定は `acceptEdits`（[.claude/settings.json](.claude/settings.json)。secret の読み書きは拒否）。
+権限の既定は `acceptEdits`（[.claude/settings.json](.claude/settings.json)。`.env`・`secrets/`・`credentials*` の読み書きは拒否）。
 
 ## 進め方
 
