@@ -8,13 +8,13 @@
   /* ── shadcn コアトークン ── */
   --radius: 0.6875rem; /* md(11px) を既定値として保持。角丸スケールは index.css @theme inline で固定値指定 */
 
-  --background: #F7F7F5; /* ws5: ニュートラル極薄グレー（旧 #FDFCF8 暖白） */
+  --background: #F9F8F5; /* Tomoshibi 契約: ニュートラル極薄グレー（DESIGN.md --bg と一致） */
   --foreground: #1B2A2B;
 
-  --card: #FFFFFC;
+  --card: #FFFEFB; /* DESIGN.md --surface と一致 */
   --card-foreground: #1B2A2B;
 
-  --popover: #FFFFFC;
+  --popover: #FFFEFB; /* = --surface */
   --popover-foreground: #1B2A2B;
 
   --primary: #2F6E70;
