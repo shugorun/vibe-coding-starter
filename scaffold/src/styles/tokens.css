@@ -8,7 +8,7 @@
   /* ── shadcn コアトークン ── */
   --radius: 0.6875rem; /* md(11px) を既定値として保持。角丸スケールは index.css @theme inline で固定値指定 */
 
-  --background: #FDFCF8;
+  --background: #F7F7F5; /* ws5: ニュートラル極薄グレー（旧 #FDFCF8 暖白） */
   --foreground: #1B2A2B;
 
   --card: #FFFFFC;
@@ -112,6 +112,14 @@
 
   --st-done-fill: #E8EDE9;
   --st-done-text: #4A6968;
+
+  /* ── レイアウト・密度トークン（ws5 追加） ── */
+  /* コンテンツ幅: 読み物レイアウトの max-width 正値。ハードコード禁止、このトークンを参照する */
+  --content-max: 1080px;
+  /* サイドバー幅: アプリシェルレイアウトでのサイドパネル幅 */
+  --sidebar-width: 18rem;
+  /* コントロール高さ: input / button の既定高さ */
+  --control-height: 2.25rem;
 }
 
 .dark {

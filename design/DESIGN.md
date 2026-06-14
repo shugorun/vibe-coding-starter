@@ -1,18 +1,18 @@
 ---
 name: Tomoshibi
 description: >
-  A utility-density interface built on warm off-white daylight. Teal is the only
+  A utility-density interface built on a neutral off-white ground. Teal is the only
   affordance colour (buttons, controls, links, nav, focus). Gold is the flame —
   the wordmark, status highlights (gold badge and action-required), and glow on dark
-  surfaces — and never signals interactivity. Editorial serif/mincho headings
-  (Cormorant Garamond + Shippori Mincho) give the chrome a storybook calm; Inter +
-  Noto Sans JP keep the UI legible and dense. Buttons, cards, links, and nav recolour
-  or lift only within teal — nothing shifts to gold. Shadows are soft and ink-tinted.
-  The header merges with the background — no border, no chrome.
+  surfaces — and never signals interactivity. Headings default to sans (Inter + Noto
+  Sans JP); editorial serif/mincho (Cormorant Garamond + Shippori Mincho) is available
+  as an optional overlay for reading-mode and brand surfaces. Buttons, cards, links,
+  and nav recolour or lift only within teal — nothing shifts to gold. Shadows are soft
+  and ink-tinted. The header merges with the background — no border, no chrome.
 
 colors:
   # Light surface
-  --bg: "#FDFCF8"
+  --bg: "#F7F7F5"  # ws5: ニュートラル極薄グレー（旧 #FDFCF8 暖白）
   --surface: "#FFFFFC"
   --surface-sunken: "#F2EBD9"
   # Text
@@ -58,7 +58,8 @@ colors:
   --gold-moon: "#F3E6BD"            # decorative moon orb on feature-night
 
 typography:
-  # Heading — serif / mincho (Cormorant Garamond + Shippori Mincho)
+  # Heading — editorial/display (optional serif/mincho: Cormorant Garamond + Shippori Mincho)
+  # Default in UI contexts: sans (Inter + Noto Sans JP). Apply font-serif explicitly on brand/reading surfaces only.
   hero:
     fontFamily: '"Cormorant Garamond","Shippori Mincho",Georgia,"Times New Roman",serif'
     fontSize: 28px
@@ -466,7 +467,7 @@ Tomoshibi ("灯") is a utility-density design language for focused productivity 
 The name describes its core visual metaphor: **a small flame lit in darkness** — warmth
 against stillness, purpose amid quiet.
 
-The daylight face is built on warm off-white (`--bg` #FDFCF8). Teal (`--primary`) is the
+The daylight face is built on a neutral off-white grey (`--bg` #F7F7F5). Teal (`--primary`) is the
 sole affordance colour — buttons, controls, links, nav, focus, eyebrow. Gold plays a
 second, narrower role and never signals interactivity: as `--gold-text` (#8A5E12, AA on
 `--bg`) it marks the wordmark and the "action-required" status, with `--gold-badge-fill`
@@ -475,10 +476,10 @@ dark surfaces, the way a lamp or moon punctuates night. Buttons, cards, links, a
 recolour or lift only within teal — nothing shifts to gold. Borders are ink hairlines,
 shadows are soft and ink-tinted, and the header disappears into the page background.
 
-Editorial headings in Cormorant Garamond / Shippori Mincho at compressed utility sizes
-give the interface a storybook calm without sacrificing information density. The body type
-stack is Inter + Noto Sans JP at 14px — a deliberate concession to utility density over
-the "reading pace" school.
+**Heading typography defaults to sans** (Inter + Noto Sans JP) — concise, dense, and
+screen-native. Cormorant Garamond / Shippori Mincho (serif/mincho) is available as an
+optional editorial overlay via `font-serif`; apply it explicitly on brand surfaces, landing
+pages, or reading-mode contexts. The body type stack is Inter + Noto Sans JP at 14px.
 
 **Key principles:**
 
@@ -501,8 +502,11 @@ the "reading pace" school.
   near-black as `--text`, keeping shadows warm rather than cold.
 - **Sunken surfaces carry no shadow.** `--surface-sunken` and `--surface-control-sunken`
   are wells; giving them a shadow would contradict the depth model.
-- **Pure white is banned.** The lightest surface is `#FFFFFC`. Background is `#FDFCF8`.
-  `#FFFFFF` is not a valid token.
+- **Pure white is banned.** The lightest surface is `#FFFFFC`. Background is `#F7F7F5`
+  (neutral off-white grey). `#FFFFFF` is not a valid token.
+- **Headings default to sans.** Inter + Noto Sans JP is the heading default in UI contexts.
+  Serif/mincho is an optional editorial overlay — apply via `font-serif` explicitly only
+  on landing pages, brand surfaces, and reading-mode layouts.
 - **Dark surfaces are rare and intentional.** Toast, emphasis card, feature hero, dark
   mode — that is the complete list. The main header stays light.
 
@@ -513,8 +517,8 @@ the "reading pace" school.
 
 | Token | Hex | Role |
 |---|---|---|
-| `--bg` | `#FDFCF8` | Page background — warm off-white, never pure white |
-| `--surface` | `#FFFFFC` | Card and input faces — slightly cooler than bg |
+| `--bg` | `#F7F7F5` | Page background — neutral off-white grey (ws5: app-shell ground) |
+| `--surface` | `#FFFFFC` | Card and input faces — near-white, floats subtly above the grey ground |
 | `--surface-sunken` | `#F2EBD9` | Thumbnail placeholder, code chip bg on light |
 
 ### Text
@@ -613,17 +617,17 @@ Three font families; no mixing within a role.
 
 | Role | Stack |
 |---|---|
-| Heading | `"Cormorant Garamond","Shippori Mincho",Georgia,"Times New Roman",serif` |
-| Body / UI | `"Inter","Noto Sans JP","system-ui","-apple-system","Segoe UI",sans-serif` |
+| Body / UI / Heading (default) | `"Inter","Noto Sans JP","system-ui","-apple-system","Segoe UI",sans-serif` |
+| Editorial / Display (serif opt-in) | `"Cormorant Garamond","Shippori Mincho",Georgia,"Times New Roman",serif` |
 | Code | `"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace` |
 
 ### Type Scale
 
 | Class | Family | Size | Weight | Line-h | Tracking | Notes |
 |---|---|---|---|---|---|---|
-| `.t-hero` | serif | 28px | 600 | 1.25 | -0.3px | Page-level hero headline |
-| `.t-display` | serif | 22px | 600 | 1.30 | -0.2px | Section heading |
-| `.t-display-md` | serif | 18px | 600 | 1.40 | -0.1px | Sub-section heading |
+| `.t-hero` | serif (editorial opt-in) | 28px | 600 | 1.25 | -0.3px | Page-level hero headline; default sans in app UI |
+| `.t-display` | serif (editorial opt-in) | 22px | 600 | 1.30 | -0.2px | Section heading; default sans in app UI |
+| `.t-display-md` | serif (editorial opt-in) | 18px | 600 | 1.40 | -0.1px | Sub-section heading; default sans in app UI |
 | `.t-lead` | sans | 16px | 400 | 1.55 | — | Intro paragraph; colour `--text-secondary` |
 | `.t-tagline` | sans | 15px | 500 | 1.40 | — | Label, eyebrow, navigation title |
 | `.t-body-strong` | sans | 14px | 600 | 1.50 | +0.02em | Bold body; colour `--text-strong` (#234E4D) |
@@ -634,8 +638,11 @@ Three font families; no mixing within a role.
 
 ### Principles
 
-- **Serif/mincho for headings only.** Cormorant Garamond and Shippori Mincho are editorial
-  anchors, not general-purpose faces. Body and UI are always Inter + Noto Sans JP.
+- **Heading default is sans; serif/mincho is editorial opt-in.** In UI / app contexts,
+  headings use Inter + Noto Sans JP (the same `--font-ui` as body). Cormorant Garamond
+  and Shippori Mincho are editorial anchors for reading-mode and brand surfaces — apply
+  via `class="font-serif"` explicitly; never set globally on `h*` elements. Body and
+  generic UI labels are always sans.
 - **Negative tracking on serifs.** -0.3 → -0.1px at heading sizes prevents optical spread.
   Never apply negative tracking to body or caption sizes.
 - **Bold utility pair.** `t-body-strong` and `t-caption-strong` use weight 600 +
@@ -660,6 +667,13 @@ Three font families; no mixing within a role.
 ```
 .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
 ```
+
+The 1080px value is the canonical width for reading/document layouts. It is defined in
+`tokens.css` as `--content-max: 1080px` and exposed in Tailwind via the `max-w-content`
+utility (generated from `--spacing-content` in `index.css @theme`).
+**Always reference `--content-max` (or the `max-w-content` utility) — never hardcode a
+pixel value.** Using `max-w-2xl`, `max-w-4xl`, or similar shortcuts diverges from the
+design and is not permitted.
 
 Below 820px: padding collapses to 24px and multi-column grids become single-column.
 
@@ -686,6 +700,45 @@ The eyebrow → heading → sub-copy → content stack repeats across every sect
 .row   { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
 .stack { display: flex; flex-direction: column; gap: 16px; }
 ```
+
+### App Shell Layout (ws5 — second canonical pattern)
+
+The **app shell** is a first-class layout pattern alongside the reading-mode container.
+Use it for any productivity tool where content should fill the viewport (VS Code /
+Claude-style), not sit centred in a reading column.
+
+**Core structure:**
+
+```
+<div class="h-svh flex flex-col">            <!-- full viewport, no outer padding -->
+  <header class="shrink-0 border-b border-border">…</header>
+  <div class="flex flex-1 min-h-0 overflow-hidden">
+    <aside class="w-[var(--sidebar-width)] shrink-0 border-r border-border overflow-y-auto">…</aside>
+    <main class="flex-1 min-w-0 overflow-y-auto">…</main>
+    <!-- additional panels slot here; each compresses existing columns via flex -->
+  </div>
+</div>
+```
+
+**Rules:**
+- Root element uses `h-svh` (100svh) — fills the viewport, never scrolls itself.
+- Top bar is optional (`shrink-0`); without it, panels begin at the top edge.
+- Panel dividers are `border-r border-border` (structural `--border`, not control border).
+- **Each panel scrolls independently** (`overflow-y-auto`). The root does NOT scroll.
+- Outer padding is **minimal** (panel contents set their own inner padding, typically
+  `--s-sm` to `--s-md`). Do not add a container wrapper inside an app-shell panel.
+- Adding a new panel inserts a new `flex-1` or fixed-width column; existing panels
+  reflow (compress) automatically — no media query change required.
+- Sidebar width is governed by the token `--sidebar-width` (18rem), exposed as the
+  `w-sidebar` Tailwind utility (from `--spacing-sidebar` in `@theme`). Never hardcode
+  `w-72`, `w-64`, or similar values.
+
+**When to choose each pattern:**
+
+| Pattern | When to use |
+|---|---|
+| Container (`.wrap`, `max-w-content`) | Marketing pages, docs, single-entity reading views |
+| App shell (`h-svh`, panels) | Productivity apps, dashboards, any UI with ≥ 2 persistent panels |
 
 ### Spacing Tokens
 
@@ -821,7 +874,10 @@ shared: `transform .18s ease, background .32s ease, color .32s ease, box-shadow 
 
 Active state for all buttons except `btn-on-dark`: `transform: scale(0.97)`.
 
-Focus ring: `outline: 2px solid --primary; outline-offset: 2px` (`:focus-visible`).
+Focus ring (ws5): `focus-visible:ring-2 focus-visible:ring-ring/30` in Tailwind terms —
+2px width, `--ring` colour at 30% opacity. This is softer than shadcn's default
+(`ring-[3px] / ring-ring/50`), which reads as too heavy at Tomoshibi's density.
+Apply this to both `button` and `input` components; the pattern is `focus-visible:border-ring focus-visible:ring-ring/30 focus-visible:ring-2`.
 
 **Primary** (`btn-primary`): Teal pill. `--primary` fill, `--on-primary` text, `--r-pill`,
 `padding: 9px 22px`. Hover: `--shadow-hover` + `translateY(-1px)`.
@@ -876,6 +932,46 @@ soft teal drop shadow `0 2px 12px -5px rgba(47,110,112,.28)`. No outline on focu
 Focus-within: `border-color: --primary` only — **no shadow**. The search bar is a well;
 wells do not cast shadows.
 
+### Textarea (ws5)
+
+A multi-line text input that grows with its content instead of scrolling.
+
+**Visual spec:** identical to the text input — `--surface` background, `--border-control`
+outline, `--r-md` radius, `--shadow-sm` resting, same focus treatment (teal border + soft
+drop shadow). Set `resize: none` to prevent manual resize handles, which break auto-grow.
+
+**Min height:** `min-height: 4.5rem` (approximately 3 lines at default body size).
+Do not set a fixed `height` — the element must be free to grow.
+
+**Auto-grow implementation:** two options:
+
+1. **`field-sizing: content` (CSS, no JS):** supported in Chrome 123+ / Safari 17.4+.
+   Add `field-sizing: content` to the textarea styles. Pair with a `min-height` to
+   prevent collapsing to a single line when empty.
+
+   ```css
+   textarea {
+     field-sizing: content;
+     min-height: 4.5rem;
+     resize: none;
+   }
+   ```
+
+2. **JS `scrollHeight` sync (universal fallback):** on every `input` event, reset the
+   height to `auto` then set it to `element.scrollHeight` in pixels.
+
+   ```ts
+   function autoGrow(el: HTMLTextAreaElement) {
+     el.style.height = "auto";
+     el.style.height = `${el.scrollHeight}px`;
+   }
+   textarea.addEventListener("input", () => autoGrow(textarea));
+   ```
+
+The component must never show a vertical scrollbar during normal typing. If content
+exceeds a project-defined maximum height, clip at that height and allow scroll only above
+the max.
+
 ### Badges
 
 **Standard** (`.badge`): `--r-pill`, `padding: 5px 11px`, `font-size: 12px`,
@@ -924,14 +1020,18 @@ container, not a hero.
   never a button colour.
 - Reserve dark surfaces for: notification toasts, emphasis card (`.card.ink`), feature
   hero (`.feature-night`), and full dark mode. Avoid dark zones in navigation.
-- Pair serif headings with sans body copy. Never use Cormorant or Shippori Mincho below
-  18px or for UI labels.
+- When using editorial serif headings (on brand/landing surfaces), always pair with sans
+  body copy. Never use Cormorant or Shippori Mincho below 18px or for UI labels.
 - Wrap `.link` arrows in `<span class="arw">` so the slide animation targets only the
   glyph.
 - Use only two derived accent hues: `--terracotta` and `--indigo`. More breaks chromatic
   harmony.
 - Apply `--shadow-sm` as the resting state; step up to `--shadow-hover` on hover.
-- Use `#FDFCF8` as the page background — never `#FFFFFF`.
+- Use `#F7F7F5` as the page background — never `#FFFFFF` and never `#FDFCF8` (the old
+  warm-white is superseded by the neutral grey as of ws5).
+- Use sans (Inter + Noto Sans JP) for headings in UI/app contexts. Reserve `font-serif`
+  (Cormorant Garamond + Shippori Mincho) for landing pages, brand surfaces, and
+  reading-mode layouts — always apply it explicitly, never globally.
 
 ### Don't
 
@@ -949,8 +1049,9 @@ container, not a hero.
   light. Dark surfaces are rare and purposeful.
 - Don't use `translateY` on `.icon-btn` hover. Its ink-tinted shadow is a grounded glow,
   not a lift.
-- Don't mix serif and sans in a single typographic role. A heading is always serif; a
-  body paragraph is always sans.
+- Don't use serif for UI headings by default. Serif/mincho is an editorial opt-in for
+  reading-mode and brand surfaces only. Body paragraphs are always sans.
+- Don't mix serif and sans within a single typographic role in the same component.
 - Don't add a third status hue beyond terracotta and indigo in Ver.1.
 - Don't use `#FFFFFF` anywhere — not for backgrounds, not for `--on-primary` (which is
   `#FAF6EC`). Pure white is outside the palette.
@@ -1000,7 +1101,7 @@ to the target; consider `40×40` minimum for production.
   rather than `:root` variables. The recurring values are `0.18s ease` (button lift),
   `0.25s ease` (logo colour), `0.30s cubic-bezier(.4,0,.2,1)` (arrow slide),
   `0.32s ease` (colour transitions), `0.35s ease` (card lift).
-- **Colour contrast — audited (verified):** on `--bg` #FDFCF8 — `--text` 14.5:1,
+- **Colour contrast — audited (verified):** on `--bg` #F7F7F5 — `--text` 14.5:1,
   `--text-strong` (#234E4D) approx. 9.0:1, `--text-secondary` 5.83:1, `--primary`
   5.71:1, `--gold-text` 5.54:1, `--on-primary` on `--primary` 5.43:1, gold badge
   (#6B470C on #F1D89B) 5.94:1 — all pass AA. Status badges 4.67–7.49:1 (all pass).
@@ -1008,4 +1109,23 @@ to the target; consider `40×40` minimum for production.
   `--text-muted` #5A7D7B is 4.40:1 (below AA for small text), so it is restricted to
   placeholders and icons; `.t-fine` text uses `--text-secondary`.
 - **Remaining audit items:** focus-ring contrast on dark surfaces and touch-target sizing
-  (Responsive) are not yet resolved.
+
+### Roadmap — next design iterations (ws5 additions)
+
+- **Type scale tokenisation:** `--text-h1/h2/body/meta` size + line-height + weight as
+  tokens (font family is already tokenised; sizes/weights are still hardcoded in classes).
+  Would enable one-place density / accessibility switching.
+- **Hover / active overlay tokens:** `--hover` and `--active` as composable overlay
+  colours (currently `--accent` is reused; a dedicated token would separate intent).
+- **Border-width token:** `--border-width` (colour `--border` is tokenised; width `1px`
+  is still a direct literal throughout).
+- **Sidebar independent surface:** `--sidebar` / `--sidebar-border` / `--sidebar-item-hover`
+  as a distinct surface layer. Currently app-shell sidebar inherits `--background`;
+  Claude-style products need the sidebar as its own chromatic plane.
+- **Density token (`--control-height`) wired to components:** `--control-height: 2.25rem`
+  is defined in `tokens.css` and exposed as `h-control` (from `--spacing-control` in
+  `@theme`), but `button.tsx` / `input.tsx` still use `h-9` directly. Full wiring would
+  allow compact/comfortable modes via one token change.
+- **Sidebar / control discoverability:** surface `--sidebar-width` in the Spacing Tokens
+  table and document `--ring` (teal `#2F6E70`) + the textarea max-height default alongside
+  their component specs (currently they live only in the App Shell / Inputs prose).

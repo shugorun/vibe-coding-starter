@@ -84,11 +84,22 @@
   --font-sans: var(--font-ui);
   --font-serif: var(--font-serif);
   --font-mono: var(--font-mono);
+
+  /* ── レイアウト・密度トークン（ws5 追加） ── */
+  /*
+   * Tailwind v4 @theme: --spacing-{name} → max-w-{name} / w-{name} / h-{name} ユーティリティ。
+   * max-w-content   → 読み物レイアウト最大幅（ハードコード max-w-2xl 等の代替）
+   * w-sidebar       → アプリシェルのサイドパネル幅
+   * h-control       → input/button の既定高さ（密度統一）
+   */
+  --spacing-content: var(--content-max);
+  --spacing-sidebar: var(--sidebar-width);
+  --spacing-control: var(--control-height);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/30;
   }
   body {
     @apply bg-background text-foreground;
